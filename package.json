@@ -1,0 +1,34 @@
+{
+  "name": "openadjssdk",
+  "version": "3.1.7",
+  "description": "openAD protocol js sdk for npm version",
+  "main": "dist/openADJsSDK.cjs.js",
+  "module": "dist/openADJsSDK.esm.js",
+  "browser": "dist/openADJsSDK.umd.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/openad-protocol/sdk.git"
+  },
+  "keywords": [
+    "openAD",
+    "openAD sdk"
+  ],
+  "author": "vincent.pan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/openad-protocol/sdk/issues"
+  },
+  "homepage": "https://github.com/openad-protocol/sdk#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "rollup": "^2.79.2",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "selfinfo": "^1.0.0"
+  }
+}
