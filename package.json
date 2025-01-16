@@ -1,6 +1,6 @@
 {
   "name": "openadjssdk",
-  "version": "3.1.8",
+  "version": "3.2.0",
   "description": "openAD protocol js sdk for npm version",
   "main": "dist/openADJsSDK.cjs.js",
   "module": "dist/openADJsSDK.esm.js",
