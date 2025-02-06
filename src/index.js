@@ -1,90 +1,1808 @@
-!function(e,t){"object"===typeof module&&"object"===typeof module.exports?module.exports=t():"function"===typeof define&&define.amd?define(t):e.openADJsSDK=t()}(this,(function(){const e={init:function(e){this.hostURL=e,this.TG.init()},version:"3.1.7",build:"202501081848",resources:{},bridge:{init:async function(e){let{userInfo:t,adParams:n,adInfo:r}=e;t||(t={}),n||(n={});let{zoneId:o,publisherId:i}=r,a=document.querySelector(`.openADJsSDKBanner[zoneId="${o}"][publisherId="${i}"]`);if(!a)return console.log("error",`can not find render dom.openADJsSDKBanner[zoneId="${o}"][publisherId="${i}"]`),!1;let s,c=await this.get({adParams:n,userInfo:t,adInfo:r});if(0!==c.code)return console.log("error",c.msg),!1;s=c.data,a.innerHTML=`<a href="javascript:void(0);"style="display: block;"onclick="window.openADJsSDK.bridge.click({ 'zoneId':${o}, 'publisherId':${i} })"><img src="${s.resource_url}"style="max-width: 100%;max-height: 100%;display: block;"></a>`,c=await this.log(r),c.code,console.log(c.msg)},get:async function(e){return await window.openADJsSDK.functionSent.get(e)},log:async function(e){return await window.openADJsSDK.functionSent.log(e)},click:async function(e){return await window.openADJsSDK.functionSent.click(e)}},interactive:{dom:"openADJsSDKInteractive",clock:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAuJJREFUeNq8l91vTEEYxvdsNi1tybbVVkuRUEn1ohFfsdJ2+RPcIUG5ITSC0l6KG25cccWNm3LTROLSBkF8RNH6rLQJrSoNopS2CI7nTZ4jk8k5nTmn3X2T387umZl33p05884zjuu6MUvLB2vBJlAPFoMC1k2AQdADroP74KeVVwnAwEJwBDxx7e0xOAwqTP6dKWYgDvaBNrCAz76Am+AuGAaf+byEbVKgAST5/DU4Cc6GnYES0Kn9o52g0mLGqsAu8FTpfwEk/dr7OagG19jxG2gFBRYD6xSCdjBBX1dAmSmAeeAeO7wEqQgD6zSBQSWIZFAACXCJDfvAMoPj0+AWgzYFUQuG6LsDOH4B7GeDMbDa4FCWZITt05Yz0QDG2WeHHoC8OO9Y2WrhrEhp3xRiOY6xzytQrAZwnBXdIN8ygOEIAUi/F+x3UJ7JXp8DtnJXnrLOYNHsOzjD782SXeNMHkuZWC7Hsm+d4BOok5QuAaRZkQFjOQjgA7jDTJuWj1Ws6I7lzrpYrpAA5it5O1c2xHJ5nMes2MccBjDCcq4E8Jc/8iI6+xOhz2/vxE3gY5I/ykM6cVgWcSs7Ae38XuxilpMJrv1KsCjE4K4y4HnwIyAAh1u7hX08W8JyIEEZtZlyy9Zk1p7xBa4wtK3nllOXah3LR3IqNeLLDfAe1IKvlkFU0rk7xRLJWj8Eo9r094Iy0OgJhz7m5y0zcP6b2M6xnoNZ3sM2PuyiLsjW4Hk88FwK3f+noUilN6zYm8UADnGMAVCqC5I9rBy1ECRRSFFjiu32U0RxRQn3W0iyMNQpkuwix/IVpaWaKF0/A4NvBG/pM+MpIZMsv6rI8gMRX0xRVkcVWZ6xkeXqTKgXE5mVbXr0AYhKbgYPlP4dQRcTm6tZO6hSjtHbPM/7mYJjvKTWMMNtYJLyjvgT4Nx0LqfVnMreEJfTHm658ulcTnUrBGso4bzr+WzWjftcz3/ZOP0nwACjryfJixYb2QAAAABJRU5ErkJggg==",init:async function(e){return{code:(await window.openADJsSDK.functionSent.get({...e})).code}},getRender:function(e){const{adInfo:t,cb:n}=e,{zoneId:r,publisherId:o}=t;let i=document.querySelector(`.${this.dom}[zoneId="${r}"][publisherId="${o}"]`);i&&i.remove(),i=document.createElement("div"),i.className=this.dom,i.style.cssText="position:fixed;top:0;left:0;right:0;bottom:0;left:0;z-index:10000;background: linear-gradient(135deg, #d3d78d, #71a888, #d8dbb9), url(https://telegram.org/img/tgme/pattern.svg);background-blend-mode: overlay;background-repeat: no-repeat;background-position: center;background-size: cover;",i.setAttribute("zoneId",r),i.setAttribute("publisherId",o),document.body.appendChild(i);let a=window.openADJsSDK.resources[`${o}_${r}`],s=a.params.language;if(a=a?a.resource:null,!a)return!1;window.openADJsSDK.resources[`${o}_${r}`].cb=n,n.adResourceLoad&&n.adResourceLoad(!0),n.adOpening&&n.adOpening(!0),i.innerHTML=`<div style="margin:32px 32px 0; background:rgba(0,0,0,0.3);border-radius:12px;padding:5px;box-sizing:border-box;"><div onclick="window.openADJsSDK.interactive.cbLog('click', { 'zoneId':${r}, 'publisherId':${o} })"style="background:#fff;border-radius:10px 10px 0 0;padding:4px 4px 0;box-sizing:border-box;height:calc(100vw - 82px);"><img src="${a.resource_url}"style="width:100%;display:block;border-radius:8px 8px 0 0;height:100%;"></div><div style="font-weight:bold;line-height:26px;font-size:20px;padding:6px 10px 10px;width:100%;text-align:left;background:#fff;box-sizing:border-box;color:#000;">${a.resource_text}</div><div style="line-height:18px;font-size:14px;width:100%;text-align:left;padding:0 10px 22px;background:#fff;border-radius:0 0 10px 10px;box-sizing:border-box;color:#000;">${a.resource_desc}</div></div><div style="margin:20px 32px; width:calc(100% - 64px);line-height:48px;height:48px;border-radius:10px;background:linear-gradient(to bottom, #4ebef6, #1f86b9);color:#fff;font-size:20px;cursor:pointer;text-align:center;"onclick="window.openADJsSDK.interactive.cbLog('click', { 'zoneId':${r}, 'publisherId':${o} })">GO</div><div style="position:absolute;left:20px;bottom:18px;right:20px;display:flex; -webkit-box-pack:center; justify-content:center; align-items:center; flex-direction:column; -webkit-flex-direction:column; text-align:center;"><div tag="${this.dom+"Countdown"}"style="width:78px;height:22px;line-height:22px;background:rgba(0,0,0,0.6);border-radius:11px;text-align:center;display: flex;justify-content:center;align-items:center;"><img src="${this.clock}"style="width:16px;height:16px;margin-right:6px;"/><i style="color:#fff;font-size:14px;font-style:normal;"></i></div><div style="text-align:center;display: flex;justify-content:center;align-items:center;font-size:12px;color:#fff;line-height:14px;margin:10px 0 0;text-shadow:0 0 2px #000;">\n ${"zh"===s?"\u672c\u9801\u9eb5\u7232\u5ee3\u544a\u5167\u5bb9\uff0c\u8acb\u81ea\u884c\u7504\u5225\uff0c\u5e73\u98b1\u4e0d\u627f\u64d4\u4efb\u4f55\u6cd5\u5f8b\u8cac\u4efb\u3002":"This page contains advertising content. Please exercise discretion. OpenAD protocol assumes no legal responsibility."}\n</div></div>`,n.adOpened&&n.adOpened(!0),this.countDown(t,n)},log:async function(e){return await window.openADJsSDK.functionSent.log(e)},click:async function(e){return await window.openADJsSDK.functionSent.click(e)},countDown:function(e,t){let n=15,r=setInterval((async()=>{let o,i=document.querySelector(`.${this.dom}[zoneId="${e.zoneId}"][publisherId="${e.publisherId}"]`);i&&(o=i.querySelector(`div[tag="${this.dom}Countdown"]i`)),o&&i?(o.innerHTML="00:"+(n<10?"0":"")+n,0===n?(clearInterval(r),o.innerHTML="",await this.cbLog("viewAD",e,t)):n--):clearInterval(r)}),1e3)},cbLog:async function(e,t,n){console.log(e),n=n||window.openADJsSDK.resources[`${t.publisherId}_${t.zoneId}`].cb||{},0===(await this.log(t)).code?n.adTaskFinished&&n.adTaskFinished(!0):n.adTaskFinished&&n.adTaskFinished(!1),n.adClosing&&n.adClosing(e),this.destroy(t,n,e),"click"===e&&(n.adClick&&n.adClick(!0),await this.click(t))},destroy:function(e,t,n){e=document.querySelector(`.${this.dom}[zoneId="${e.zoneId}"][publisherId="${e.publisherId}"]`),document.body.removeChild(e),t.adClosed&&t.adClosed(n)}},functionSent:{get:async function(e){let{adParams:t,userInfo:n,adInfo:r}=e,o=window.openADJsSDK,i=t.TG,a=this.getBrowserInfo({},o),s=n||{},c=a._t,l=window.location.href.substring(0,window.location.href.indexOf("?"))||window.location.href;l=l.includes("tgWebAppData")?l.split("#")[0]:l;let d={_t:c,language:a.language.split("-")[0].split("_")[0],version:t.version||a.osVersion+" "+a.browser+" "+a.browserVersion,channel:a.channel,platform:a.platform,fromType:"script",location:l,userId:s.userId||a.platformOS,firstName:s.firstName||a.platformOS,lastName:s.lastName||a.platformOS,userName:s.username||s.userName||a.platformOS,walletType:s.walletType||'null',walletAddress:s.walletAddress||'null',isPremium:false,};i&&(s=o.TG.initDataUnsafe.user||{},"string"===typeof s&&(s=JSON.parse(s)),n=JSON.parse(JSON.stringify(s)),s={userId:s.id||d.userId,firstName:s.id?s.first_name||"FN"+s.id:d.firstName,lastName:s.id?s.last_name||"LN"+s.id:d.lastName,userName:s.id?s.username||"UN"+s.id:d.userName},d={...d,...s,channel:"TG",language:(s.id?s.language_code||s.languageCode:d.language).split("_")[0].split("-")[0].toLocaleLowerCase(),version:s.id?o.TG.version:d.version,platform:d.platform,isPremium:s['is_premium']||false,});let u,p="";for(let g in d)"_t"!==g&&"location"!==g&&(p+=d[g]+"+");localStorage.openADStore?(u=JSON.parse(localStorage.openADStore),(new Date).valueOf()-864e5>Number(u._t)&&(u={_t:c})):u={_t:c},localStorage.openADStore=JSON.stringify(u),d.traceId=r.publisherId+(new Date(u._t).getDate()+1)+""+(new Date(u._t).getDay()+1+r.zoneId)+window.shortHash(p+"+"+u._t);let f={code:-2,msg:"get openAD ads error!"};if(Object.prototype.hasOwnProperty.call(n,"is_bot")&&n.is_bot)return f;d={...r,...s,...d};try{let e=await this.AJAX("get",o.hostURL+"/v3/api/getAd",d,"json");if(e&&0===e.errcode&&e.data&&e.data.eventId){const t=e.data,n={width:t.width,type:t.type,height:t.height,resource_id:t.resource_id||t.id,resource_url:t.resource_url||t.banner_url,resource_text:t.resource_text||"",resource_desc:t.resource_desc||""};return o.resources[`${r.publisherId}_${r.zoneId}`]={params:{...d,eventId:e.data.eventId,cb:t.cb,hash:t.hash,signature:t.signature},resource:{...n,click_url:t.jumpURL||t.click_url}},{code:0,data:n}}
-return f}catch(h){return h}},log:async function(e){let t=window.openADJsSDK,n=t.resources[`${e.publisherId}_${e.zoneId}`];if(!n)return{code:-1,msg:"can not find resource"};let r={code:0,msg:"send log info successfully"},o={code:-2,msg:"send log info failed"};try{return 0===(await this.AJAX("get",t.hostURL+"/v3/api/logInfo",{...n.params,requestType:"loginfo"},"json")).errcode?r:o}catch(i){return i}},click:async function(e){let t=window.openADJsSDK,n=t.resources[`${e.publisherId}_${e.zoneId}`];n||console.log("error","can not find resource");try{0===(await this.AJAX("get",t.hostURL+"/v3/api/clickInfo",{...n.params,requestType:"clickinfo"},"json")).errcode?console.log("success","send click info successfully"):console.log("error","send click info failed")}catch(r){console.log("error","send click info failed")}
-this.open(n)},open:function(e){let t=window.openADJsSDK,n=e.resource||{};n=n.click_url||"https://t.me/OpenAD_protocol",console.log("url",n),"TG"===e.params.channel?n.includes("t.me")||n.includes("tg//")?(console.log("2"),t.TG.openTelegramLink(n)):(console.log("3"),t.TG.openLink(n)):(console.log("4"),window.open(n))},AJAX:function(e,t,n,r){return new Promise(((o,i)=>{n={ajaxTime:(new Date).valueOf(),...n},window.J$.ajax({method:e,url:t,dataType:r,data:"get"===e?n:JSON.stringify(n),async:!0,timeout:5e3,success:e=>o(e),error:(e,t,n)=>404===e.status?i({code:-3,msg:"Ajax Request 404 !"}):"timeout"===t?i({code:-4,msg:"Ajax Request Timeout !"}):(console.log("Ajax request error:",n),i({code:-5,msg:"Ajax Request Error !"}))})}))},getBrowserInfo:function(e){let t={appMode:"browser",appName:"",channel:"",osVersion:"",browser:"",browserVersion:"",platform:"",platformOS:"",language:window.navigator.language,_t:(new Date).valueOf()};e=e?Object.assign(t,e):t;let n=navigator.userAgent.toLocaleLowerCase();if(n.indexOf("macintosh")>-1){e.platform="MAC",e.platformOS="Mac OS X";let t=n.indexOf("mac os x"),r=n.indexOf(")");e.osVersion=n.slice(t+9,r).replace("mac os x","").replace(/_/g,"."),""===e.osVersion&&(e.osVersion="Mac OS X"),1024>=document.documentElement.offsetWidth?e.channel="H5":e.channel="PC"}else if(n.indexOf("windows")>-1){e.platform="WIN";let t=[{name:"5.0",OS:"2000",version:"2000"},{name:"5.1",OS:"XP",version:"Sp1 / Sp2"},{name:"5.2",OS:"XP / 2003",version:"XP Sp3 / Server 2003"},{name:"6.0",OS:"Vista / 2008",version:"Vista / Server 2008"},{name:"6.1",OS:"7 / 2008",version:"7 / Server 2008 R2"},{name:"6.2",OS:"8 / 2012",version:"8 / Server 2012"},{name:"6.3",OS:"8.1 / 2012",version:"8.1 / Server 2012 R2"},{name:"6.4",OS:"10",version:"6.4"},{name:"10.0",OS:"10",version:"10.0"},{name:"11.0",OS:"11",version:"11.0"}];for(let r=0;r<t.length;r++){let o="windows nt "+t[r].name;n.indexOf(o)>-1&&(e.platformOS="Windows "+t[r].OS,e.osVersion="Win"+t[r].version)}
-1024>=document.documentElement.offsetWidth?e.channel="H5":e.channel="PC"}else if(n.indexOf("android")>-1||n.indexOf("linux")>-1){e.channel="H5";let t=n.split(";");for(let n=0;n<t.length;n++)t[n].indexOf("android")>-1&&(e.platformOS="Android"+t[n].slice(t[n].indexOf("android"),t[n].length).replace("android","").replace(/[*_?]/g,".").replace(/[-+?]/g," ")),t[n].indexOf("build")>-1&&(e.osVersion=t[n].slice(0,t[n].indexOf("build")).replace(/[*_?]/g,".").replace(/[-/+?]/g," "));e.platform="ANDROID"}else n.match(/\(i[^;]+;( U;)? cpu.+mac os x/)&&(e.channel="H5",n.indexOf("iphone")>-1?e.platformOS="Iphone":n.indexOf("ipad")>-1?e.platformOS="Ipad":n.indexOf("ipod")>-1&&(e.platformOS="Ipod"),e.osVersion=n.slice(n.lastIndexOf(e.platformOS.toLocaleLowerCase()),n.indexOf("like")-1).replace(e.platformOS+" os","").replace(/[*_?]/g,".").replace(/[-/+?]/g," "),e.platform="IOS");let r=n.split(" "),o=[{test:"micromessenger",name:"WeXin",get:"micromessenger",appMode:"WX"},{test:"tencenttraveler",name:"TencentTraveler",get:"tencenttraveler",appMode:"browser"},{test:"firefox",name:"FireFox",get:"firefox",appMode:"browser"},{test:"edge",name:"Edge",get:"edge",appMode:"browser"},{test:"bidubrowser",name:"BaiDuBrowser",get:"bidubrowser",appMode:"browser"},{test:"maxthon",name:"Maxthon",get:"maxthon",appMode:"browser"},{test:"qqbrowser",name:"QQBrowser",get:"qqbrowser",appMode:"browser"},{test:"opera",name:"Opera",get:"opera",appMode:"browser"},{test:"opr",name:"Opera",get:"opr",appMode:"browser"},{test:"presto",name:"Opera",get:"version",appMode:"browser"},{test:"360se",name:"360SE",get:"360se",appMode:"browser"},{test:"360ee",name:"360EE",get:"360ee",appMode:"browser"},{test:"metasr",name:"SoGou",get:"metasr",appMode:"browser"},{test:"se",name:"SoGou",get:"se",appMode:"browser"},{test:"the world",name:"The World",get:"the world",appMode:"browser"},{test:"theworld",name:"The World",get:"theworld",appMode:"browser"},{test:"uc",name:"UC",get:"uc",appMode:"browser"},{test:"ubrowser",name:"UC",get:"ubrowser",appMode:"browser"},{test:"lbbrowser",name:"LBBrowser",get:"lbbrowser",appMode:"browser"},{test:"version",name:"Safari",get:"version",appMode:"browser"},{test:"chrome",name:"Chrome",get:"chrome",appMode:"browser"},{test:"iemobile",name:"IEMobile",get:"iemobile",appMode:"browser"},{test:"trident/7.0",name:"MSIE",get:"rv:",appMode:"browser"},{test:"msie",name:"MSIE",get:"msie",appMode:"browser"}];if(n.indexOf("khtml")>-1&&n.indexOf("gecko")>-1&&n.indexOf("safari")>-1&&n.indexOf("applewebkit")>-1){for(let a=0;a<o.length;a++)
-if(n.indexOf(o[a].test)>-1){e.browser=o[a].name,e.appName=o[a].get,e.appMode=o[a].appMode,i(o[a].get);break}}else
-for(let a=0;a<o.length;a++)
-if(n.indexOf(o[a].test)>-1){e.browser=o[a].name,e.appName=o[a].get,e.appMode=o[a].appMode,i(o[a].get);break}
-function i(t){for(let o=0;o<r.length;o++)
-if(r[o].indexOf(t)>-1){r[o]=r[o].replace(/[;:)*_\-\/+?]/g,""),e.browserVersion=r[o].slice(r[o].indexOf(t)+t.length,n.length);break}}
-return(n.indexOf("trident")>-1||n.indexOf("msie")>-1)&&(n.indexOf("msie")>-1?i("msie"):n.indexOf("trident")>-1&&i("rv"),e.browserVersion="IE"+e.browserVersion),e},Obj2String:function(e){let t="";for(let n in e)t+="&"+n+"="+e[n];return t=encodeURIComponent(t).replace(/%/g,"_"),t}},TG:{eventHandlers:{},initParams:{},isIframe:!1,version:"6.0",initData:"",initDataUnsafe:{},platform:"unknown",init:function(){this.initParams=this.storeParams(),this.storeCache(),this.initIsIframe(),this.resetParams()},storeParams:function(){let e="";try{e=location.hash.toString(),e=e.replace(/^#/,"");let t={};if(!e.length)return t;if(e.indexOf("=")<0&&e.indexOf("?")<0)return t._path=this.urlSafeDecode(e),t;let n=e.indexOf("?");if(n>=0){let r=e.substring(0,n);t._path=this.urlSafeDecode(r),e=e.substring(n+1)}
-let r=this.urlParseQueryString(e);for(let e in r)t[e]=r[e];return t}catch(t){}},storeCache:function(){let e=this.sessionStorageGet("initParams");if(e)
-for(let t in e)"undefined"===typeof this.initParams[t]&&(this.initParams[t]=e[t]);this.sessionStorageSet("initParams",this.initParams)},initIsIframe:function(){let e,t,n=this.isIframe;try{if(n=null!==window.parent&&window!==window.parent,n){window.addEventListener("message",(function(n){if(n.source===window.parent){try{t=JSON.parse(n.data)}catch(r){return}
-if(t&&t.eventType)
-if("set_custom_style"===t.eventType)"https://web.telegram.org"===n.origin&&(e.innerHTML=t.eventData);else if("reload_iframe"===t.eventType){try{window.parent.postMessage(JSON.stringify({eventType:"iframe_will_reload"}),"*")}catch(r){}
-location.reload()}else this.receiveEvent(t.eventType,t.eventData)}})),e=document.createElement("style"),document.head.appendChild(e);try{window.parent.postMessage(JSON.stringify({eventType:"iframe_ready",eventData:{reload_supported:!0}}),"*")}catch(r){}}
-this.isIframe=n}catch(r){}},resetParams:function(){let e=this.initParams;if(e.tgWebAppData&&e.tgWebAppData.length){this.initData=e.tgWebAppData,this.initDataUnsafe=this.urlParseQueryString(this.initData);for(let e in this.initDataUnsafe){let n=this.initDataUnsafe[e];try{("{"===n.substring(0,1)&&"}"===n.substring(-1)||"["===n.substring(0,1)&&"]"===n.substring(-1))&&(this.initDataUnsafe[e]=JSON.parse(n))}catch(t){}}}
-e.tgWebAppVersion&&(this.version=e.tgWebAppVersion),e.tgWebAppPlatform&&(this.platform=e.tgWebAppPlatform)},postEvent:function(e,t,n){if(t||(t=function(){}),n===undefined&&(n=""),console.log("[Telegram.WebView] > postEvent",e,n),window.TelegramWebviewProxy!==undefined)window.TelegramWebviewProxy.postEvent(e,JSON.stringify(n)),t();else if(window.external&&"notify"in window.external)window.external.notify(JSON.stringify({eventType:e,eventData:n})),t();else if(this.isIframe)try{let r="https://web.telegram.org";r="*",window.parent.postMessage(JSON.stringify({eventType:e,eventData:n}),r),t()}catch(r){t(r)}else t({notAvailable:!0})},receiveEvent:function(e,t){console.log("[Telegram.WebView] < receiveEvent",e,t),this.callEventCallbacks(e,(function(n){n(e,t)}))},callEventCallbacks(e,t){let n=this.eventHandlers[e];if(n!==undefined&&n.length)
-for(let o=0;o<n.length;o++)try{t(n[o])}catch(r){}},urlParseQueryString:function(e){let t={};if(!e.length)return t;let n,r,o,i,a=e.split("&");for(n=0;n<a.length;n++)r=a[n].split("="),o=this.urlSafeDecode(r[0]),i=null==r[1]?null:this.urlSafeDecode(r[1]),t[o]=i;return t},urlSafeDecode:function(e){try{return e=e.replace(/\+/g,"%20"),decodeURIComponent(e)}catch(t){return e}},sessionStorageSet:function(e,t){try{return window.sessionStorage.setItem("__telegram__"+e,JSON.stringify(t)),!0}catch(n){}
-return!1},sessionStorageGet:function(e){try{return JSON.parse(window.sessionStorage.getItem("__telegram__"+e))}catch(t){}
-return null},ready:function(){this.postEvent("web_app_ready")},versionCompare:function(e,t){"string"!==typeof e&&(e=""),"string"!==typeof t&&(t=""),e=e.replace(/^\s+|\s+$/g,"").split("."),t=t.replace(/^\s+|\s+$/g,"").split(".");let n,r,o,i=Math.max(e.length,t.length);for(n=0;n<i;n++)
-if(r=parseInt(e[n])||0,o=parseInt(t[n])||0,r!==o)return r>o?1:-1;return 0},versionAtLeast:function(e){return this.versionCompare(this.version,e)>=0},openTelegramLink:function(e,t){let n=document.createElement("A");if(n.href=e,"http:"!==n.protocol&&"https:"!==n.protocol)throw console.error("[Telegram.WebApp] Url protocol is not supported",e),Error("WebAppTgUrlInvalid");if("t.me"!==n.hostname)throw console.error("[Telegram.WebApp] Url host is not supported",e),Error("WebAppTgUrlInvalid");let r=n.pathname+n.search;if(t=t||{},this.isIframe||this.versionAtLeast("6.1")){let e={path_full:r};t.force_request&&(e.force_request=!0),this.postEvent("web_app_open_tg_link",!1,e)}else location.href="https://t.me"+r},openLink:function(e,t){let n=document.createElement("A");if(n.href=e,"http:"!==n.protocol&&"https:"!==n.protocol)throw console.error("[Telegram.WebApp] Url protocol is not supported",e),Error("WebAppTgUrlInvalid");if(t=t||{},this.versionAtLeast("6.1")){let n={url:e};this.versionAtLeast("6.4")&&t.try_instant_view&&(n.try_instant_view=!0),this.versionAtLeast("7.6")&&t.try_browser&&(n.try_browser=t.try_browser),this.postEvent("web_app_open_link",!1,n)}else window.open(e,"_blank")}}};return console.log("this",this),e})),function(e,t){"object"==typeof module&&"object"==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error("Ajax requires a window with a document");return t(e)}:t(e)}("undefined"!=typeof window?window:this,(function(e,t){var n=[],r=(n.slice,n.concat,n.push),o=(n.indexOf,{}),i=o.toString,a=o.hasOwnProperty,s={},c="Split jQuery Ajax Funtion as Window.J$.ajax and remove other Functions width jQuery.1.11.1, Compatible with old browsers, Case for import full jQuery component without conflict. Author: https://github.com:MrVincentP/jq-ajax, Modification Date: 2024-04-11 16:35:00. In My App, I use it to request JSONP for thirdparty components and same origin ajax request instead axios.",l=function(e,t){return new l.fn.init(e,t)},d=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;function p(e){var t=e.length,n=l.type(e);return"function"!==n&&!l.isWindow(e)&&(!(1!==e.nodeType||!t)||("array"===n||0===t||"number"==typeof t&&t>0&&t-1 in e))}
-l.fn=l.prototype={Async:c,constructor:l,selector:"",length:0},l.extend=l.fn.extend=function(){var e,t,n,r,o,i,a=arguments[0]||{},s=1,c=arguments.length,d=!1;for("boolean"==typeof a&&(d=a,a=arguments[s]||{},s++),"object"==typeof a||l.isFunction(a)||(a={}),s===c&&(a=this,s--);c>s;s++)
-if(null!=(o=arguments[s]))
-for(r in o)e=a[r],a!==(n=o[r])&&(d&&n&&(l.isPlainObject(n)||(t=l.isArray(n)))?(t?(t=!1,i=e&&l.isArray(e)?e:[]):i=e&&l.isPlainObject(e)?e:{},a[r]=l.extend(d,i,n)):void 0!==n&&(a[r]=n));return a},l.extend({expando:"Ajax"+(c+Math.random()).replace(/\D/g,""),isReady:!0,error:function(e){throw new Error(e)},isFunction:function(e){return"function"===l.type(e)},isArray:Array.isArray||function(e){return"array"===l.type(e)},isWindow:function(e){return null!=e&&e==e.window},isPlainObject:function(e){var t;if(!e||"object"!==l.type(e)||e.nodeType||l.isWindow(e))return!1;try{if(e.constructor&&!a.call(e,"constructor")&&!a.call(e.constructor.prototype,"isPrototypeOf"))return!1}catch(n){return!1}
-if(s.ownLast)
-for(t in e)return a.call(e,t);for(t in e);return void 0===t||a.call(e,t)},type:function(e){return null==e?e+"":"object"==typeof e||"function"==typeof e?o[i.call(e)]||"object":typeof e},each:function(e,t,n){var r=0,o=e.length,i=p(e);if(n){if(i)
-for(;o>r&&!1!==t.apply(e[r],n);r++);else
-for(r in e)
-if(!1===t.apply(e[r],n))break}else if(i)
-for(;o>r&&!1!==t.call(e[r],r,e[r]);r++);else
-for(r in e)
-if(!1===t.call(e[r],r,e[r]))break;return e},trim:function(e){return null==e?"":(e+"").replace(d,"")},makeArray:function(e,t){var n=t||[];return null!=e&&(p(Object(e))?l.merge(n,"string"==typeof e?[e]:e):r.call(n,e)),n},merge:function(e,t){for(var n=+t.length,r=0,o=e.length;n>r;)e[o++]=t[r++];if(n!==n)
-for(;void 0!==t[r];)e[o++]=t[r++];return e.length=o,e},now:function(){return+new Date}}),l.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),(function(e,t){o["[object "+t+"]"]=t.toLowerCase()}));var f,h=e.document,g=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,m=l.fn.init=function(e,t){var n,r;if(!e)return this;if("string"==typeof e){if(!(n="<"===e.charAt(0)&&">"===e.charAt(e.length-1)&&e.length>=3?[null,e,null]:g.exec(e))||!n[1]&&t)return!t||t.Async?(t||f).find(e):this.constructor(t).find(e);if(n[1]){if(t=t instanceof l?t[0]:t,l.merge(this,l.parseHTML(n[1],t&&t.nodeType?t.ownerDocument||t:h,!0)),u.test(n[1])&&l.isPlainObject(t))
-for(n in t)l.isFunction(this[n])?this[n](t[n]):this.attr(n,t[n]);return this}
-if((r=h.getElementById(n[2]))&&r.parentNode){if(r.id!==n[2])return f.find(e);this.length=1,this[0]=r}
-return this.context=h,this.selector=e,this}
-return e.nodeType?(this.context=this[0]=e,this.length=1,this):l.isFunction(e)?"undefined"!=typeof f.ready?f.ready(e):e(l):(void 0!==e.selector&&(this.selector=e.selector,this.context=e.context),l.makeArray(e,this))};m.prototype=l.fn,f=l(h);var y=/\S+/g,v={};l.Callbacks=function(e){e="string"==typeof e?v[e]||function(e){var t=v[e]={};return l.each(e.match(y)||[],(function(e,n){t[n]=!0})),t}(e):l.extend({},e);var t,n,r,o,i,a,s=[],c=!e.once&&[],d=function(l){for(n=e.memory&&l,r=!0,i=a||0,a=0,o=s.length,t=!0;s&&o>i;i++)
-if(!1===s[i].apply(l[0],l[1])&&e.stopOnFalse){n=!1;break}t=!1,s&&(c?c.length&&d(c.shift()):n?s=[]:u.disable())},u={add:function(){if(s){var r=s.length;!function i(t){l.each(t,(function(t,n){var r=l.type(n);"function"===r?e.unique&&u.has(n)||s.push(n):n&&n.length&&"string"!==r&&i(n)}))}(arguments),t?o=s.length:n&&(a=r,d(n))}
-return this},remove:function(){return s&&l.each(arguments,(function(e,n){for(var r;(r=l.inArray(n,s,r))>-1;)s.splice(r,1),t&&(o>=r&&o--,i>=r&&i--)})),this},has:function(e){return e?l.inArray(e,s)>-1:!(!s||!s.length)},empty:function(){return s=[],o=0,this},disable:function(){return s=c=n=void 0,this},disabled:function(){return!s},lock:function(){return c=void 0,n||u.disable(),this},locked:function(){return!c},fireWith:function(e,n){return!s||r&&!c||(n=[e,(n=n||[]).slice?n.slice():n],t?c.push(n):d(n)),this},fire:function(){return u.fireWith(this,arguments),this},fired:function(){return!!r}};return u},l.extend({Deferred:function(e){var t=[["resolve","done",l.Callbacks("once memory"),"resolved"],["reject","fail",l.Callbacks("once memory"),"rejected"],["notify","progress",l.Callbacks("memory")]],n="pending",r={state:function(){return n},always:function(){return o.done(arguments).fail(arguments),this},then:function(){var e=arguments;return l.Deferred((function(n){l.each(t,(function(t,i){var a=l.isFunction(e[t])&&e[t];o[i[1]]((function(){var e=a&&a.apply(this,arguments);e&&l.isFunction(e.promise)?e.promise().done(n.resolve).fail(n.reject).progress(n.notify):n[i[0]+"With"](this===r?n.promise():this,a?[e]:arguments)}))})),e=null})).promise()},promise:function(e){return null!=e?l.extend(e,r):r}},o={};return r.pipe=r.then,l.each(t,(function(e,i){var a=i[2],s=i[3];r[i[1]]=a.add,s&&a.add((function(){n=s}),t[1^e][2].disable,t[2][2].lock),o[i[0]]=function(){return o[i[0]+"With"](this===o?r:this,arguments),this},o[i[0]+"With"]=a.fireWith})),r.promise(o),e&&e.call(o,o),o}});var b,w="undefined";for(b in l(s))break;function x(e,t,r,o){if(l.acceptData(e)){var i,a,s=l.expando,c=e.nodeType,d=c?l.cache:e,u=c?e[s]:e[s]&&s;if(u&&d[u]&&(o||d[u].data)||void 0!==r||"string"!=typeof t)return u||(u=c?e[s]=n.pop()||l.guid++:s),d[u]||(d[u]=c?{}:{toJSON:l.noop}),("object"==typeof t||"function"==typeof t)&&(o?d[u]=l.extend(d[u],t):d[u].data=l.extend(d[u].data,t)),a=d[u],o||(a.data||(a.data={}),a=a.data),void 0!==r&&(a[l.camelCase(t)]=r),"string"==typeof t?null==(i=a[t])&&(i=a[l.camelCase(t)]):i=a,i}}
-l.acceptData=function(e){var t=l.noData[(e.nodeName+" ").toLowerCase()],n=+e.nodeType||1;return(1===n||9===n)&&(!t||!0!==t&&e.getAttribute("classid")===t)},l.extend({noData:{"applet ":!0,"embed ":!0,"object ":"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"},_data:function(e,t,n){return x(e,t,n,!0)}});var S=/^(?:focusinfocus|focusoutblur)$/;function A(){return!0}
-function O(){return!1}
-l.event={trigger:function(t,n,r,o){var i,s,c,d,u,f,g,m=[r||h],y=a.call(t,"type")?t.type:t,v=a.call(t,"namespace")?t.namespace.split("."):[];if(c=f=r=r||h,3!==r.nodeType&&8!==r.nodeType&&!S.test(y+l.event.triggered)&&(y.indexOf(".")>=0&&(v=y.split("."),y=v.shift(),v.sort()),s=y.indexOf(":")<0&&"on"+y,(t=t[l.expando]?t:new l.Event(y,"object"==typeof t&&t)).isTrigger=o?2:3,t.namespace=v.join("."),t.namespace_re=t.namespace?new RegExp("(^|\\.)"+v.join("\\.(?:.*\\.|)")+"(\\.|$)"):null,t.result=void 0,t.target||(t.target=r),n=null==n?[t]:l.makeArray(n,[t]),u=l.event.special[y]||{},o||!u.trigger||!1!==u.trigger.apply(r,n))){if(!o&&!u.noBubble&&!l.isWindow(r)){for(d=u.delegateType||y,S.test(d+y)||(c=c.parentNode);c;c=c.parentNode)m.push(c),f=c;f===(r.ownerDocument||h)&&m.push(f.defaultView||f.parentWindow||e)}
-for(g=0;(c=m[g++])&&!t.isPropagationStopped();)t.type=g>1?d:u.bindType||y,(i=(l._data(c,"events")||{})[t.type]&&l._data(c,"handle"))&&i.apply(c,n),(i=s&&c[s])&&i.apply&&l.acceptData(c)&&(t.result=i.apply(c,n),!1===t.result&&t.preventDefault());if(t.type=y,!o&&!t.isDefaultPrevented()&&(!u._default||!1===u._default.apply(m.pop(),n))&&l.acceptData(r)&&s&&r[y]&&!l.isWindow(r)){(f=r[s])&&(r[s]=null),l.event.triggered=y;try{r[y]()}catch(p){}
-l.event.triggered=void 0,f&&(r[s]=f)}
-return t.result}},special:{load:{noBubble:!0}}},l.removeEvent=h.removeEventListener?function(e,t,n){e.removeEventListener&&e.removeEventListener(t,n,!1)}:function(e,t,n){var r="on"+t;e.detachEvent&&(typeof e[r]===w&&(e[r]=null),e.detachEvent(r,n))},l.Event=function(e,t){return this instanceof l.Event?(e&&e.type?(this.originalEvent=e,this.type=e.type,this.isDefaultPrevented=e.defaultPrevented||void 0===e.defaultPrevented&&!1===e.returnValue?A:O):this.type=e,t&&l.extend(this,t),this.timeStamp=e&&e.timeStamp||l.now(),void(this[l.expando]=!0)):new l.Event(e,t)},l.Event.prototype={isDefaultPrevented:O,isPropagationStopped:O},l.fn.extend({bind:function(e,t,n){return this.on(e,null,t,n)},unbind:function(e,t){return this.off(e,null,t)}});var j=l.now(),D=/\?/,T=/(,)|(\[|{)|(}|])|"(?:[^"\\\r\n]|\\["\\\/bfnrt]|\\u[\da-fA-F]{4})*"\s*:?|true|false|null|-?(?!0\d)\d+(?:\.\d+|)(?:[eE][+-]?\d+|)/g;l.parseJSON=function(t){if(e.JSON&&e.JSON.parse)return e.JSON.parse(t+"");var n,r=null,o=l.trim(t+"");return o&&!l.trim(o.replace(T,(function(e,t,o,i){return n&&t&&(r=0),0===r?e:(n=o||t,r+=!i-!o,"")})))?Function("return "+o)():l.error("Invalid JSON: "+t)},l.parseXML=function(t){var n;if(!t||"string"!=typeof t)return null;try{e.DOMParser?n=(new DOMParser).parseFromString(t,"text/xml"):((n=new ActiveXObject("Microsoft.XMLDOM")).async="false",n.loadXML(t))}catch(r){n=void 0}
-return n&&n.documentElement&&!n.getElementsByTagName("parsererror").length||l.error("Invalid XML: "+t),n};var I,k,C=/#.*$/,M=/([?&])_=[^&]*/,_=/^(.*?):[ \t]*([^\r\n]*)\r?$/gm,E=/^(?:GET|HEAD)$/,J=/^\/\//,L=/^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/,N={},W={},P="*/".concat("*");try{k=location.href}catch(oe){(k=h.createElement("a")).href="",k=k.href}
-function F(e){return function(t,n){"string"!=typeof t&&(n=t,t="*");var r,o=0,i=t.toLowerCase().match(y)||[];if(l.isFunction(n))
-for(;r=i[o++];)"+"===r.charAt(0)?(r=r.slice(1)||"*",(e[r]=e[r]||[]).unshift(n)):(e[r]=e[r]||[]).push(n)}}
-function R(e,t,n,r){var o={},i=e===W;function a(s){var c;return o[s]=!0,l.each(e[s]||[],(function(e,s){var l=s(t,n,r);return"string"!=typeof l||i||o[l]?i?!(c=l):void 0:(t.dataTypes.unshift(l),a(l),!1)})),c}
-return a(t.dataTypes[0])||!o["*"]&&a("*")}
-function $(e,t){var n,r,o=l.ajaxSettings.flatOptions||{};for(r in t)void 0!==t[r]&&((o[r]?e:n||(n={}))[r]=t[r]);return n&&l.extend(!0,e,n),e}
-function z(e,t,n,r){var o,i,a,s,l,d={},u=e.dataTypes.slice();if(u[1])
-for(a in e.converters)d[a.toLowerCase()]=e.converters[a];for(i=u.shift();i;)
-if(e.responseFields[i]&&(n[e.responseFields[i]]=t),!l&&r&&e.dataFilter&&(t=e.dataFilter(t,e.dataType)),l=i,i=u.shift())
-if("*"===i)i=l;else if("*"!==l&&l!==i){if(!(a=d[l+" "+i]||d["* "+i]))
-for(o in d)
-if((s=o.split(" "))[1]===i&&(a=d[l+" "+s[0]]||d["* "+s[0]])){!0===a?a=d[o]:!0!==d[o]&&(i=s[0],u.unshift(s[1]));break}if(!0!==a)
-if(a&&e.throws)t=a(t);else try{t=a(t)}catch(c){return{state:"parsererror",error:a?c:"No conversion from "+l+" to "+i}}}
-return{state:"success",data:t}}
-I=L.exec(k.toLowerCase())||[],l.extend({active:0,lastModified:{},etag:{},ajaxSettings:{url:k,type:"GET",isLocal:/^(?:about|app|app-storage|.+-extension|file|res|widget):$/.test(I[1]),global:!0,processData:!0,async:!0,contentType:"application/x-www-form-urlencoded; charset=UTF-8",accepts:{"*":P,text:"text/plain",html:"text/html",xml:"application/xml, text/xml",json:"application/json, text/javascript"},contents:{xml:/xml/,html:/html/,json:/json/},responseFields:{xml:"responseXML",text:"responseText",json:"responseJSON"},converters:{"* text":String,"text html":!0,"text json":l.parseJSON,"text xml":l.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(e,t){return t?$($(e,l.ajaxSettings),t):$(l.ajaxSettings,e)},ajaxPrefilter:F(N),ajaxTransport:F(W),ajax:function(e,t){"object"==typeof e&&(t=e,e=void 0),t=t||{};var n,r,o,i,a,s,c,d,u=l.ajaxSetup({},t),p=u.context||u,f=u.context&&(p.nodeType||p.Async)?l(p):l.event,h=l.Deferred(),g=l.Callbacks("once memory"),m=u.statusCode||{},v={},b={},w=0,x="canceled",S={readyState:0,getResponseHeader:function(e){var t;if(2===w){if(!d)
-for(d={};t=_.exec(i);)d[t[1].toLowerCase()]=t[2];t=d[e.toLowerCase()]}
-return null==t?null:t},getAllResponseHeaders:function(){return 2===w?i:null},setRequestHeader:function(e,t){var n=e.toLowerCase();return w||(e=b[n]=b[n]||e,v[e]=t),this},overrideMimeType:function(e){return w||(u.mimeType=e),this},statusCode:function(e){var t;if(e)
-if(2>w)
-for(t in e)m[t]=[m[t],e[t]];else S.always(e[S.status]);return this},abort:function(e){var t=e||x;return c&&c.abort(t),A(0,t),this}};if(h.promise(S).complete=g.add,S.success=S.done,S.error=S.fail,u.url=((e||u.url||k)+"").replace(C,"").replace(J,I[1]+"//"),u.type=t.method||t.type||u.method||u.type,u.dataTypes=l.trim(u.dataType||"*").toLowerCase().match(y)||[""],null==u.crossDomain&&(n=L.exec(u.url.toLowerCase()),u.crossDomain=!(!n||n[1]===I[1]&&n[2]===I[2]&&(n[3]||("http:"===n[1]?"80":"443"))===(I[3]||("http:"===I[1]?"80":"443")))),u.data&&u.processData&&"string"!=typeof u.data&&(u.data=l.param(u.data,u.traditional)),R(N,u,t,S),2===w)return S;for(r in(s=u.global)&&0===l.active++&&l.event.trigger("ajaxStart"),u.type=u.type.toUpperCase(),u.hasContent=!E.test(u.type),o=u.url,u.hasContent||(u.data&&(o=u.url+=(D.test(o)?"&":"?")+u.data,delete u.data),!1===u.cache&&(u.url=M.test(o)?o.replace(M,"$1_="+j++):o+(D.test(o)?"&":"?")+"_="+j++)),u.ifModified&&(l.lastModified[o]&&S.setRequestHeader("If-Modified-Since",l.lastModified[o]),l.etag[o]&&S.setRequestHeader("If-None-Match",l.etag[o])),(u.data&&u.hasContent&&!1!==u.contentType||t.contentType)&&S.setRequestHeader("Content-Type",u.contentType),S.setRequestHeader("Accept",u.dataTypes[0]&&u.accepts[u.dataTypes[0]]?u.accepts[u.dataTypes[0]]+("*"!==u.dataTypes[0]?", "+P+"; q=0.01":""):u.accepts["*"]),u.headers)S.setRequestHeader(r,u.headers[r]);if(u.beforeSend&&(!1===u.beforeSend.call(p,S,u)||2===w))return S.abort();for(r in x="abort",{success:1,error:1,complete:1})S[r](u[r]);if(c=R(W,u,t,S)){S.readyState=1,s&&f.trigger("ajaxSend",[S,u]),u.async&&u.timeout>0&&(a=setTimeout((function(){S.abort("timeout")}),u.timeout));try{w=1,c.send(v,A)}catch(O){if(!(2>w))throw O;A(-1,O)}}else A(-1,"No Transport");function A(e,t,n,r){var d,y,v,b,x,A=t;2!==w&&(w=2,a&&clearTimeout(a),c=void 0,i=r||"",S.readyState=e>0?4:0,d=e>=200&&300>e||304===e,n&&(b=function(e,t,n){for(var r,o,i,a,s=e.contents,c=e.dataTypes;"*"===c[0];)c.shift(),void 0===o&&(o=e.mimeType||t.getResponseHeader("Content-Type"));if(o)
-for(a in s)
-if(s[a]&&s[a].test(o)){c.unshift(a);break}if(c[0]in n)i=c[0];else{for(a in n){if(!c[0]||e.converters[a+" "+c[0]]){i=a;break}
-r||(r=a)}
-i=i||r}
-return i?(i!==c[0]&&c.unshift(i),n[i]):void 0}(u,S,n)),b=z(u,b,S,d),d?(u.ifModified&&((x=S.getResponseHeader("Last-Modified"))&&(l.lastModified[o]=x),(x=S.getResponseHeader("etag"))&&(l.etag[o]=x)),204===e||"HEAD"===u.type?A="nocontent":304===e?A="notmodified":(A=b.state,y=b.data,d=!(v=b.error))):(v=A,(e||!A)&&(A="error",0>e&&(e=0))),S.status=e,S.statusText=(t||A)+"",d?h.resolveWith(p,[y,A,S]):h.rejectWith(p,[S,A,v]),S.statusCode(m),m=void 0,s&&f.trigger(d?"ajaxSuccess":"ajaxError",[S,u,d?y:v]),g.fireWith(p,[S,A]),s&&(f.trigger("ajaxComplete",[S,u]),--l.active||l.event.trigger("ajaxStop")))}
-return S},getJSON:function(e,t,n){return l.get(e,t,n,"json")},getScript:function(e,t){return l.get(e,void 0,t,"script")}}),l.each(["get","post"],(function(e,t){l[t]=function(e,n,r,o){return l.isFunction(n)&&(o=o||r,r=n,n=void 0),l.ajax({url:e,type:t,dataType:o,data:n,success:r})}})),l.each(["ajaxStart","ajaxStop","ajaxComplete","ajaxError","ajaxSuccess","ajaxSend"],(function(e,t){l.fn[t]=function(e){return this.on(t,e)}})),l._evalUrl=function(e){return l.ajax({url:e,type:"GET",dataType:"script",async:!1,global:!1,throws:!0})};var H=/%20/g,q=/\[\]$/,X=/\r?\n/g,B=/^(?:submit|button|image|reset|file)$/i,V=/^(?:input|select|textarea|keygen)/i;function K(e,t,n,r){var o;if(l.isArray(t))l.each(t,(function(t,o){n||q.test(e)?r(e,o):K(e+"["+("object"==typeof o?t:"")+"]",o,n,r)}));else if(n||"object"!==l.type(t))r(e,t);else
-for(o in t)K(e+"["+o+"]",t[o],n,r)}
-l.param=function(e,t){var n,r=[],o=function(e,t){t=l.isFunction(t)?t():null==t?"":t,r[r.length]=encodeURIComponent(e)+"="+encodeURIComponent(t)};if(void 0===t&&(t=l.ajaxSettings&&l.ajaxSettings.traditional),l.isArray(e)||e.Async&&!l.isPlainObject(e))l.each(e,(function(){o(this.name,this.value)}));else
-for(n in e)K(n,e[n],t,o);return r.join("&").replace(H,"+")},l.fn.extend({serialize:function(){return l.param(this.serializeArray())},serializeArray:function(){return this.map((function(){var e=l.prop(this,"elements");return e?l.makeArray(e):this})).filter((function(){var e=this.type;return this.name&&!l(this).is(":disabled")&&V.test(this.nodeName)&&!B.test(e)&&(this.checked||!U.test(e))})).map((function(e,t){var n=l(this).val();return null==n?null:l.isArray(n)?l.map(n,(function(e){return{name:t.name,value:e.replace(X,"\r\n")}})):{name:t.name,value:n.replace(X,"\r\n")}})).get()}}),l.ajaxSettings.xhr=void 0!==e.ActiveXObject?function(){return!this.isLocal&&/^(get|post|head|put|delete|options)$/i.test(this.type)&&Y()||function(){try{return new e.ActiveXObject("Microsoft.XMLHTTP")}catch(t){}}()}:Y;var G=0,Q={},Z=l.ajaxSettings.xhr();function Y(){try{return new e.XMLHttpRequest}catch(t){}}
-e.ActiveXObject&&l(e).on("unload",(function(){for(var e in Q)Q[e](void 0,!0)})),s.cors=!!Z&&"withCredentials"in Z,(Z=s.ajax=!!Z)&&l.ajaxTransport((function(e){var t;if(!e.crossDomain||s.cors)return{send:function(n,r){var o,i=e.xhr(),a=++G;if(i.open(e.type,e.url,e.async,e.username,e.password),e.xhrFields)
-for(o in e.xhrFields)i[o]=e.xhrFields[o];for(o in e.mimeType&&i.overrideMimeType&&i.overrideMimeType(e.mimeType),e.crossDomain||n["X-Requested-With"]||(n["X-Requested-With"]="XMLHttpRequest"),n)void 0!==n[o]&&i.setRequestHeader(o,n[o]+"");i.send(e.hasContent&&e.data||null),t=function(n,o){var c,d,u;if(t&&(o||4===i.readyState))
-if(delete Q[a],t=void 0,i.onreadystatechange=l.noop,o)4!==i.readyState&&i.abort();else{u={},c=i.status,"string"==typeof i.responseText&&(u.text=i.responseText);try{d=i.statusText}catch(s){d=""}
-c||!e.isLocal||e.crossDomain?1223===c&&(c=204):c=u.text?200:404}u&&r(c,d,u,i.getAllResponseHeaders())},e.async?4===i.readyState?setTimeout(t):i.onreadystatechange=Q[a]=t:t()},abort:function(){t&&t(void 0,!0)}}})),l.ajaxSetup({accepts:{script:"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"},contents:{script:/(?:java|ecma)script/},converters:{"text script":function(e){return l.globalEval(e),e}}}),l.ajaxPrefilter("script",(function(e){void 0===e.cache&&(e.cache=!1),e.crossDomain&&(e.type="GET",e.global=!1)})),l.ajaxTransport("script",(function(e){if(e.crossDomain){var t,n=h.head||l("head")[0]||h.documentElement;return{send:function(r,o){(t=h.createElement("script")).async=!0,e.scriptCharset&&(t.charset=e.scriptCharset),t.src=e.url,t.onload=t.onreadystatechange=function(e,n){(n||!t.readyState||/loaded|complete/.test(t.readyState))&&(t.onload=t.onreadystatechange=null,t.parentNode&&t.parentNode.removeChild(t),t=null,n||o(200,"success"))},n.insertBefore(t,n.firstChild)},abort:function(){t&&t.onload(void 0,!0)}}}}));var ee=[],te=/(=)\?(?=&|$)|\?\?/;l.ajaxSetup({jsonp:"callback",jsonpCallback:function(){var e=ee.pop()||l.expando+"_"+j++;return this[e]=!0,e}}),l.ajaxPrefilter("json jsonp",(function(t,n,r){var o,i,a,s=!1!==t.jsonp&&(te.test(t.url)?"url":"string"==typeof t.data&&!(t.contentType||"").indexOf("application/x-www-form-urlencoded")&&te.test(t.data)&&"data");return s||"jsonp"===t.dataTypes[0]?(o=t.jsonpCallback=l.isFunction(t.jsonpCallback)?t.jsonpCallback():t.jsonpCallback,s?t[s]=t[s].replace(te,"$1"+o):!1!==t.jsonp&&(t.url+=(D.test(t.url)?"&":"?")+t.jsonp+"="+o),t.converters["script json"]=function(){return a||l.error(o+" was not called"),a[0]},t.dataTypes[0]="json",i=e[o],e[o]=function(){a=arguments},r.always((function(){e[o]=i,t[o]&&(t.jsonpCallback=n.jsonpCallback,ee.push(o)),a&&l.isFunction(i)&&i(a[0]),a=i=void 0})),"script"):void 0})),l.parseHTML=function(e,t,n){if(!e||"string"!=typeof e)return null;"boolean"==typeof t&&(n=t,t=!1),t=t||h;var r=u.exec(e),o=!n&&[];return r?[t.createElement(r[1])]:(r=l.buildFragment([e],t,o),o&&o.length&&l(o).remove(),l.merge([],r.childNodes))};var ne=l.fn.load;l.fn.load=function(e,t,n){if("string"!=typeof e&&ne)return ne.apply(this,arguments);var r,o,i,a=this,s=e.indexOf(" ");return s>=0&&(r=l.trim(e.slice(s,e.length)),e=e.slice(0,s)),l.isFunction(t)?(n=t,t=void 0):t&&"object"==typeof t&&(i="POST"),a.length>0&&l.ajax({url:e,type:i,dataType:"html",data:t}).done((function(e){o=arguments,a.html(r?l("<div>").append(l.parseHTML(e)).find(r):e)})).complete(n&&function(e,t){a.each(n,o||[e.responseText,t,e])}),this},"function"==typeof define&&define.amd&&define("Async",[],(function(){return l}));var re=e.J$;return l.noConflict=function(t){return e.J$===l&&(e.J$=re),l},typeof t===w&&(e.J$=l),l})),function(e){"use strict";function t(e,t){var n=(65535&e)+(65535&t);return(e>>16)+(t>>16)+(n>>16)<<16|65535&n}
-function n(e,n,r,o,i,a){return t(function(e,t){return e<<t|e>>>32-t}(t(t(n,e),t(o,a)),i),r)}
-function r(e,t,r,o,i,a,s){return n(t&r|~t&o,e,t,i,a,s)}
-function o(e,t,r,o,i,a,s){return n(t&o|r&~o,e,t,i,a,s)}
-function i(e,t,r,o,i,a,s){return n(t^r^o,e,t,i,a,s)}
-function a(e,t,r,o,i,a,s){return n(r^(t|~o),e,t,i,a,s)}
-function s(e,n){e[n>>5]|=128<<n%32,e[14+(n+64>>>9<<4)]=n;var s,c,l,d,u,p=1732584193,f=-271733879,h=-1732584194,g=271733878;for(s=0;s<e.length;s+=16)c=p,l=f,d=h,u=g,f=a(f=a(f=a(f=a(f=i(f=i(f=i(f=i(f=o(f=o(f=o(f=o(f=r(f=r(f=r(f=r(f,h=r(h,g=r(g,p=r(p,f,h,g,e[s],7,-680876936),f,h,e[s+1],12,-389564586),p,f,e[s+2],17,606105819),g,p,e[s+3],22,-1044525330),h=r(h,g=r(g,p=r(p,f,h,g,e[s+4],7,-176418897),f,h,e[s+5],12,1200080426),p,f,e[s+6],17,-1473231341),g,p,e[s+7],22,-45705983),h=r(h,g=r(g,p=r(p,f,h,g,e[s+8],7,1770035416),f,h,e[s+9],12,-1958414417),p,f,e[s+10],17,-42063),g,p,e[s+11],22,-1990404162),h=r(h,g=r(g,p=r(p,f,h,g,e[s+12],7,1804603682),f,h,e[s+13],12,-40341101),p,f,e[s+14],17,-1502002290),g,p,e[s+15],22,1236535329),h=o(h,g=o(g,p=o(p,f,h,g,e[s+1],5,-165796510),f,h,e[s+6],9,-1069501632),p,f,e[s+11],14,643717713),g,p,e[s],20,-373897302),h=o(h,g=o(g,p=o(p,f,h,g,e[s+5],5,-701558691),f,h,e[s+10],9,38016083),p,f,e[s+15],14,-660478335),g,p,e[s+4],20,-405537848),h=o(h,g=o(g,p=o(p,f,h,g,e[s+9],5,568446438),f,h,e[s+14],9,-1019803690),p,f,e[s+3],14,-187363961),g,p,e[s+8],20,1163531501),h=o(h,g=o(g,p=o(p,f,h,g,e[s+13],5,-1444681467),f,h,e[s+2],9,-51403784),p,f,e[s+7],14,1735328473),g,p,e[s+12],20,-1926607734),h=i(h,g=i(g,p=i(p,f,h,g,e[s+5],4,-378558),f,h,e[s+8],11,-2022574463),p,f,e[s+11],16,1839030562),g,p,e[s+14],23,-35309556),h=i(h,g=i(g,p=i(p,f,h,g,e[s+1],4,-1530992060),f,h,e[s+4],11,1272893353),p,f,e[s+7],16,-155497632),g,p,e[s+10],23,-1094730640),h=i(h,g=i(g,p=i(p,f,h,g,e[s+13],4,681279174),f,h,e[s],11,-358537222),p,f,e[s+3],16,-722521979),g,p,e[s+6],23,76029189),h=i(h,g=i(g,p=i(p,f,h,g,e[s+9],4,-640364487),f,h,e[s+12],11,-421815835),p,f,e[s+15],16,530742520),g,p,e[s+2],23,-995338651),h=a(h,g=a(g,p=a(p,f,h,g,e[s],6,-198630844),f,h,e[s+7],10,1126891415),p,f,e[s+14],15,-1416354905),g,p,e[s+5],21,-57434055),h=a(h,g=a(g,p=a(p,f,h,g,e[s+12],6,1700485571),f,h,e[s+3],10,-1894986606),p,f,e[s+10],15,-1051523),g,p,e[s+1],21,-2054922799),h=a(h,g=a(g,p=a(p,f,h,g,e[s+8],6,1873313359),f,h,e[s+15],10,-30611744),p,f,e[s+6],15,-1560198380),g,p,e[s+13],21,1309151649),h=a(h,g=a(g,p=a(p,f,h,g,e[s+4],6,-145523070),f,h,e[s+11],10,-1120210379),p,f,e[s+2],15,718787259),g,p,e[s+9],21,-343485551),p=t(p,c),f=t(f,l),h=t(h,d),g=t(g,u);return[p,f,h,g]}
-function c(e){var t,n="",r=32*e.length;for(t=0;t<r;t+=8)n+=String.fromCharCode(e[t>>5]>>>t%32&255);return n}
-function l(e){var t,n=[];for(n[(e.length>>2)-1]=void 0,t=0;t<n.length;t+=1)n[t]=0;var r=8*e.length;for(t=0;t<r;t+=8)n[t>>5]|=(255&e.charCodeAt(t/8))<<t%32;return n}
-function d(e){var t,n,r="";for(n=0;n<e.length;n+=1)t=e.charCodeAt(n),r+="0123456789abcdef".charAt(t>>>4&15)+"0123456789abcdef".charAt(15&t);return r}
-function u(e){return unescape(encodeURIComponent(e))}
-function p(e){return function(e){return c(s(l(e),8*e.length))}(u(e))}
-function f(e,t){return function(e,t){var n,r,o=l(e),i=[],a=[];for(i[15]=a[15]=void 0,o.length>16&&(o=s(o,8*e.length)),n=0;n<16;n+=1)i[n]=909522486^o[n],a[n]=1549556828^o[n];return r=s(i.concat(l(t)),512+8*t.length),c(s(a.concat(r),640))}(u(e),u(t))}
-function h(e,t,n){return t?n?f(t,e):function(e,t){return d(f(e,t))}(t,e):n?p(e):function(e){return d(p(e))}(e)}"function"==typeof define&&define.amd?define((function(){return h})):"object"==typeof module&&module.exports?module.exports=h:e.shortHash=h}(this);
+! function(e, t) {
+    "object" === typeof module && "object" === typeof module.exports ? module.exports = t() : "function" === typeof define && define.amd ? define(t) : e.openADJsSDK = t()
+}(this, (function() {
+    const e = {
+        init: function(e) {
+            this.hostURL = e, this.TG.init();
+        },
+        version: '3.2.4',
+        build: '202502062008',
+        hostURL: 'https://bf2055756e.api.openad.network',
+        resources: {},
+        bridge: {
+            init: async function(data){
+                let { userInfo, adParams, adInfo } = data;
+                if(!userInfo){
+                    userInfo = {};
+                }
+                if(!adParams){
+                    adParams = {};
+                }
+                let { zoneId, publisherId } = adInfo;
+                let dom = document.querySelector(`.openADJsSDKBanner[zoneId="${zoneId}"][publisherId="${publisherId}"]`);
+                if(!dom){
+                    console.log('error', `can not find render dom .openADJsSDKBanner[zoneId="${zoneId}"][publisherId="${publisherId}"]`);
+                    return false;
+                }
+                let res = await this.get({ adParams, userInfo, adInfo }), RES;
+                if(res.code === 0){
+                    RES = res.data;
+                    dom.innerHTML = `<a href="javascript:void(0);" style="display: block;" onclick="window.openADJsSDK.bridge.click({ 'zoneId':${zoneId}, 'publisherId':${publisherId} })"><img src="${RES['resource_url']}" style="max-width: 100%;max-height: 100%;display: block;"></a>`;
+                }else{
+                    console.log('error', res.msg);
+                    return false;
+                }
+                res = await this.log(adInfo);
+                if(res.code === 0){
+                    console.log(res.msg);
+                }else{
+                    console.log(res.msg);
+                }
+            },
+            get: async function(data){
+                return await window.openADJsSDK.functionSent.get(data);
+            },
+            log: async function(adInfo){
+                return await window.openADJsSDK.functionSent.log(adInfo);
+            },
+            click: async function(adInfo){
+                return await window.openADJsSDK.functionSent.click(adInfo);
+            },
+        },
+        interactive: {
+            dom: 'openADJsSDKInteractive',
+            clock: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAuJJREFUeNq8l91vTEEYxvdsNi1tybbVVkuRUEn1ohFfsdJ2+RPcIUG5ITSC0l6KG25cccWNm3LTROLSBkF8RNH6rLQJrSoNopS2CI7nTZ4jk8k5nTmn3X2T387umZl33p05884zjuu6MUvLB2vBJlAPFoMC1k2AQdADroP74KeVVwnAwEJwBDxx7e0xOAwqTP6dKWYgDvaBNrCAz76Am+AuGAaf+byEbVKgAST5/DU4Cc6GnYES0Kn9o52g0mLGqsAu8FTpfwEk/dr7OagG19jxG2gFBRYD6xSCdjBBX1dAmSmAeeAeO7wEqQgD6zSBQSWIZFAACXCJDfvAMoPj0+AWgzYFUQuG6LsDOH4B7GeDMbDa4FCWZITt05Yz0QDG2WeHHoC8OO9Y2WrhrEhp3xRiOY6xzytQrAZwnBXdIN8ygOEIAUi/F+x3UJ7JXp8DtnJXnrLOYNHsOzjD782SXeNMHkuZWC7Hsm+d4BOok5QuAaRZkQFjOQjgA7jDTJuWj1Ws6I7lzrpYrpAA5it5O1c2xHJ5nMes2MccBjDCcq4E8Jc/8iI6+xOhz2/vxE3gY5I/ykM6cVgWcSs7Ae38XuxilpMJrv1KsCjE4K4y4HnwIyAAh1u7hX08W8JyIEEZtZlyy9Zk1p7xBa4wtK3nllOXah3LR3IqNeLLDfAe1IKvlkFU0rk7xRLJWj8Eo9r094Iy0OgJhz7m5y0zcP6b2M6xnoNZ3sM2PuyiLsjW4Hk88FwK3f+noUilN6zYm8UADnGMAVCqC5I9rBy1ECRRSFFjiu32U0RxRQn3W0iyMNQpkuwix/IVpaWaKF0/A4NvBG/pM+MpIZMsv6rI8gMRX0xRVkcVWZ6xkeXqTKgXE5mVbXr0AYhKbgYPlP4dQRcTm6tZO6hSjtHbPM/7mYJjvKTWMMNtYJLyjvgT4Nx0LqfVnMreEJfTHm658ulcTnUrBGso4bzr+WzWjftcz3/ZOP0nwACjryfJixYb2QAAAABJRU5ErkJggg==',
+            init: async function(data){
+                let res = await window.openADJsSDK.functionSent.get({ ...data });
+                return { code: res.code };
+            },
+            getRender: function(data){
+                const { adInfo, cb } = data;
+                const { zoneId, publisherId } = adInfo;
+                let dom = document.querySelector(`.${this.dom}[zoneId="${zoneId}"][publisherId="${publisherId}"]`);
+                if(dom){
+                    dom.remove();
+                }
+                dom = document.createElement('div');
+                dom.className = this.dom;
+                dom.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;left:0;z-index:10000;background: linear-gradient(135deg, #d3d78d, #71a888, #d8dbb9), url(https://telegram.org/img/tgme/pattern.svg);background-blend-mode: overlay;background-repeat: no-repeat;background-position: center;background-size: cover;';
+                dom.setAttribute('zoneId', zoneId);
+                dom.setAttribute('publisherId', publisherId);
+                document.body.appendChild(dom);
+                let RES = window.openADJsSDK.resources[`${publisherId}_${zoneId}`], lan = RES.params.language;
+                RES = RES ? RES.resource : null;
+                if(RES){
+                    window.openADJsSDK.resources[`${publisherId}_${zoneId}`].cb = cb;
+                    cb.adResourceLoad && cb.adResourceLoad(true);
+                }else{
+                    return false;
+                }
+                cb.adOpening && cb.adOpening(true);
+                dom.innerHTML =
+                    '<div style="margin:32px 32px 0; background:rgba(0,0,0,0.3);border-radius:12px;padding:5px;box-sizing:border-box;">' +
+                    `<div onclick="window.openADJsSDK.interactive.cbLog('click', { 'zoneId':${zoneId}, 'publisherId':${publisherId} })" style="background:#fff;border-radius:10px 10px 0 0;padding:4px 4px 0;box-sizing:border-box;height:calc(100vw - 82px);">`+
+                    `<img src="${RES['resource_url']}" style="width:100%;display:block;border-radius:8px 8px 0 0;height:100%;">`+
+                    '</div>'+
+                    `<div style="font-weight:bold;line-height:26px;font-size:20px;padding:6px 10px 10px;width:100%;text-align:left;background:#fff;box-sizing:border-box;color:#000;">${RES['resource_text']}</div>` +
+                    `<div style="line-height:18px;font-size:14px;width:100%;text-align:left;padding:0 10px 22px;background:#fff;border-radius:0 0 10px 10px;box-sizing:border-box;color:#000;">${RES['resource_desc']}</div>` +
+                    '</div>' +
+                    `<div style="margin:20px 32px; width:calc(100% - 64px);line-height:48px;height:48px;border-radius:10px;background:linear-gradient(to bottom, #4ebef6, #1f86b9);color:#fff;font-size:20px;cursor:pointer;text-align:center;" onclick="window.openADJsSDK.interactive.cbLog('click', { 'zoneId':${zoneId}, 'publisherId':${publisherId} })">GO</div>` +
+                    '<div style="position:absolute;left:20px;bottom:18px;right:20px;display:flex; -webkit-box-pack:center; justify-content:center; align-items:center; flex-direction:column; -webkit-flex-direction:column; text-align:center;">'+
+                    `<div tag="${this.dom+'Countdown'}" style="width:78px;height:22px;line-height:22px;background:rgba(0,0,0,0.6);border-radius:11px;text-align:center;display: flex;justify-content:center;align-items:center;">` +
+                    `<img src="${this.clock}" style="width:16px;height:16px;margin-right:6px;"/>`+
+                    '<i style="color:#fff;font-size:14px;font-style:normal;"></i>'+
+                    '</div>'+
+                    `<div style="text-align:center;display: flex;justify-content:center;align-items:center;font-size:12px;color:#fff;line-height:14px;margin:10px 0 0;text-shadow:0 0 2px #000;">
+                ${lan === 'zh' ? '本頁麵爲廣告內容，請您跳转后谨慎甄別。' : 'This page contains advertising content. Please verify carefully after being redirected.'}
+              </div>`+
+                    '</div>';
+                cb.adOpened && cb.adOpened(true);
+                this.countDown(adInfo, cb);
+            },
+            log: async function (adInfo) {
+                return await window.openADJsSDK.functionSent.log(adInfo);
+            },
+            click: async function(adInfo){
+                return await window.openADJsSDK.functionSent.click(adInfo);
+            },
+            countDown: function (adInfo, cb){
+                let countdownTime = 15;
+                let countdownInterval = setInterval(async () => {
+                    let dom = document.querySelector(`.${this.dom}[zoneId="${adInfo.zoneId}"][publisherId="${adInfo.publisherId}"]`), ele;
+                    if(dom){
+                        ele = dom.querySelector(`div[tag="${this.dom}Countdown"] i`);
+                    }
+                    if(ele && dom){
+                        ele.innerHTML = '00:'+(countdownTime < 10 ? '0': '')+countdownTime;
+                        if (countdownTime === 0) {
+                            clearInterval(countdownInterval);
+                            ele.innerHTML = '';
+                            await this.cbLog('viewAD', adInfo, cb);
+                        } else {
+                            countdownTime--;
+                        }
+                    }else{
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+            },
+            cbLog: async function (type, adInfo, cb) {
+                cb = cb || window.openADJsSDK.resources[`${adInfo.publisherId}_${adInfo.zoneId}`].cb || {};
+                let res = await this.log(adInfo);
+                if(res.code === 0){
+                    cb.adTaskFinished && cb.adTaskFinished(true);
+                }else{
+                    cb.adTaskFinished && cb.adTaskFinished(false);
+                }
+                cb.adClosing && cb.adClosing(type);
+                this.destroy(adInfo, cb, type);
+                if(type === 'click'){
+                    cb.adClick && cb.adClick(true);
+                    await this.click(adInfo);
+                }
+            },
+            destroy: function (dom, cb, type){
+                dom = document.querySelector( `.${this.dom}[zoneId="${dom.zoneId}"][publisherId="${dom.publisherId}"]`);
+                document.body.removeChild(dom);
+                cb.adClosed && cb.adClosed(type);
+            },
+        },
+        functionSent: {
+            get: async function(data){
+                let { adParams, userInfo, adInfo } = data, _this = window.openADJsSDK;
+                let TG = adParams.TG, env = this.getBrowserInfo({}, _this), user = userInfo || {}, _t = env._t;
+                let location = window.location.href.substring(0, window.location.href.indexOf('?')) || window.location.href;
+                let error = { code: -2, msg: 'get openAD ads error!' };
+                location = location.includes('tgWebAppData') ? location.split('#')[0] : location;
+                let params = {
+                    'sid': _t,
+                    'language': env.language.split('-')[0].split('_')[0],
+                    'version': adParams.version || env.osVersion+' '+env.browser+ ' '+env.browserVersion,
+                    'channel': env.channel,
+                    'platform': env.platform,
+                    'fromType': 'script',
+                    location,
+                    'userId': user.userId || env.platformOS,
+                    'firstName': user.firstName ||env.platformOS,
+                    'lastName': user.lastName || env.platformOS,
+                    'userName': user.username || user.userName || env.platformOS,
+                    'walletType': user.walletType || 'null',
+                    'walletAddress': user.walletAddress || 'null',
+                    'isPremium': false,
+                }
+                if(TG){
+                    user = _this.TG.initDataUnsafe.user || {};
+                    if(typeof user === 'string'){
+                        user = JSON.parse(user);
+                    }
+                    userInfo = JSON.parse(JSON.stringify(user));
+                    if(!user.id || user.id.toString().length > 12){
+                        return error;
+                    }
+                    user = {
+                        'userId': user.id || params.userId,
+                        'firstName': user.id ? (user['first_name'] || 'FN'+user.id) : params.firstName,
+                        'lastName': user.id ? (user['last_name'] || 'LN'+user.id) : params.lastName,
+                        'userName': user.id ? (user['username'] || 'UN'+user.id) : params.userName,
+                        'isPremium': user['is_premium'] || false,
+                    };
+                    params = {
+                        ...params,
+                        ...user,
+                        channel: 'TG',
+                        language: (user.id ? (user['language_code'] || user['languageCode']) : params.language).split('_')[0].split('-')[0].toLocaleLowerCase(),
+                        version: user.id ? _this.TG.version : params.version,
+                        platform: params.platform,
+                    }
+                }
+                if(userInfo && Object.prototype.hasOwnProperty.call(userInfo, 'is_bot') && userInfo['is_bot']){
+                    return error;
+                }
+                let traceId = '', openADStore;
+                for(let key in params){
+                    if(key !== '_t' && key !== 'location'){
+                        traceId += params[key]+'+';
+                    }
+                }
+                if(localStorage.openADStore){
+                    openADStore = JSON.parse(localStorage.openADStore);
+                    if(new Date().valueOf() - 24*3600*1000 > Number(openADStore._t)){
+                        openADStore = { _t };
+                    }
+                }else{
+                    openADStore = { _t };
+                }
+                localStorage.openADStore = JSON.stringify(openADStore);
+                params.traceId = adInfo.publisherId+(new Date(openADStore._t).getDate()+1)+''+(new Date(openADStore._t).getDay()+1+adInfo.zoneId)+window.shortHash(traceId+'+'+openADStore._t);
+                params = { ...adInfo, ...user, ...params };
+                try {
+                    let res = await this.AJAX('get', _this.hostURL+'/v3/api/getAd', params, 'json');
+                    if(res && res.errcode === 0 && res.data && res.data.eventId){
+                        const RES = res.data;
+                        const data = {
+                            'width': RES.width,
+                            'type': RES['type'],
+                            'height': RES.height,
+                            'resource_id': RES['resource_id'] || RES.id,
+                            'resource_url': RES['resource_url'] || RES['banner_url'],
+                            'resource_text': RES['resource_text'] || '',
+                            'resource_desc': RES['resource_desc'] || '',
+                        }
+                        _this.resources[`${adInfo.publisherId}_${adInfo.zoneId}`] = {
+                            hasLog: false,
+                            hasClick: false,
+                            params: { ...params, eventId: res.data.eventId, cb: RES.cb, 'hash': RES.hash, 'signature': RES.signature },
+                            resource: { ...data, 'click_url': RES['jumpURL'] || RES['click_url'] },
+                        };
+                        return { code: 0, data };
+                    }else{
+                        return error;
+                    }
+                } catch (e) {
+                    return e;
+                }
+            },
+            log: async function(adInfo){
+                let _this = window.openADJsSDK, resource = _this.resources[`${adInfo.publisherId}_${adInfo.zoneId}`];
+                if(!resource){
+                    return { code: -1, msg: 'can not find resource' };
+                }
+                let ok = { code: 0, msg: 'send log info successfully' }, error = { code: -2, msg: 'send log info failed' };
+                try {
+                    let res = await this.AJAX('get', _this.hostURL+'/v3/api/logInfo', { ...resource.params, requestType: 'loginfo' }, 'json');
+                    if(res.errcode === 0){
+                        return ok;
+                    }else{
+                        return error;
+                    }
+                } catch (e) {
+                    return e;
+                }
+            },
+            click: async function(adInfo){
+                let _this = window.openADJsSDK, resource = _this.resources[`${adInfo.publisherId}_${adInfo.zoneId}`];
+                if(!resource){
+                    this.open({});
+                    return false;
+                }
+                try {
+                    let res = await this.AJAX('get', _this.hostURL+'/v3/api/clickInfo', { ...resource.params, requestType: 'clickinfo' }, 'json');
+                    if(res.errcode === 0){
+                        console.log('success', 'send click info successfully');
+                    }else{
+                        console.log('error', 'send click info failed');
+                    }
+                } catch (e) {
+                    console.log('error', 'send click info failed');
+                }
+                this.open(resource);
+            },
+            open: function(resource){
+                let _this = window.openADJsSDK, url = resource.resource || {}/**, params = resource.params || {}**/;
+                url = url['click_url'] || 'https://t.me/OpenAD_protocol';
+                if(resource.params.channel === 'TG'){
+                    if(url.includes('t.me') || url.includes('tg//')){
+                        _this.TG.openTelegramLink(url);
+                    }else{
+                        _this.TG.openLink(url);
+                    }
+                }else{
+                    window.open(url);
+                }
+            },
+            AJAX: function(method, url, data, dataType){
+                return new Promise((resolve, reject) => {
+                    data = { rt: new Date().valueOf() , ...data };
+                    window.J$.ajax({
+                        method,
+                        url,
+                        dataType,
+                        data: method === 'get' ? data : JSON.stringify(data),
+                        contentType: 'application/json', // 设置为 JSON 格式
+                        async: true,
+                        timeout: 5000,
+                        success: (res) => {
+                            return resolve(res);
+                        },
+                        error: (xhr, status, error) => {
+                            if (xhr.status === 404) {
+                                return reject({ code: -3, msg: 'Ajax Request 404 !' });
+                            } else if (status === 'timeout') {
+                                return reject({ code: -4, msg: 'Ajax Request Timeout !' });
+                            } else {
+                                console.log('Ajax request error:', error);
+                                return reject({ code: -5, msg: 'Ajax Request Error !' });
+                            }
+                        },
+                    });
+                });
+            },
+            getBrowserInfo: function (obj) {
+                let NewObj = {
+                    appMode: 'browser',
+                    appName: '',
+                    channel: '',
+                    osVersion: '',
+                    browser: '',
+                    browserVersion: '',
+                    platform: '',
+                    platformOS: '',
+                    language: window.navigator.language,
+                    _t: new Date().valueOf(),
+                };
+                obj = obj ? Object.assign(NewObj, obj) : NewObj;
+                let UA = navigator.userAgent.toLocaleLowerCase();
+                if(UA.indexOf('macintosh') > -1){
+                    obj.platform = 'MAC';
+                    obj.platformOS = 'Mac OS X';
+                    let t = UA.indexOf('mac os x'), t1 = UA.indexOf(')');
+                    obj.osVersion = UA.slice(t+9,t1).replace('mac os x','').replace(/_/g, '.');
+                    if(obj.osVersion === ''){
+                        obj.osVersion = 'Mac OS X';
+                    }
+                    if(1024 >= document.documentElement.offsetWidth){
+                        obj.channel = 'H5';
+                    }else{
+                        obj.channel = 'PC';
+                    }
+                } else if(UA.indexOf('windows') > -1){
+                    obj.platform = 'WIN';
+                    let PcList = [
+                        { name: '5.0',OS: '2000',version: '2000' },
+                        { name: '5.1',OS: 'XP',version: 'Sp1 / Sp2' },
+                        { name: '5.2',OS: 'XP / 2003',version: 'XP Sp3 / Server 2003' },
+                        { name: '6.0',OS: 'Vista / 2008',version: 'Vista / Server 2008' },
+                        { name: '6.1',OS: '7 / 2008',version: '7 / Server 2008 R2' },
+                        { name: '6.2',OS: '8 / 2012',version: '8 / Server 2012' },
+                        { name: '6.3',OS: '8.1 / 2012',version: '8.1 / Server 2012 R2' },
+                        { name: '6.4',OS: '10',version: '6.4' },
+                        { name: '10.0',OS: '10',version: '10.0' },
+                        { name: '11.0',OS: '11',version: '11.0' },
+                    ];
+                    for(let i=0;i<PcList.length;i++){
+                        let WIN = 'windows nt '+ PcList[i].name;
+                        if(UA.indexOf(WIN) > -1){
+                            obj.platformOS = 'Windows '+PcList[i].OS;
+                            obj.osVersion = 'Win'+PcList[i].version;
+                        }
+                    }
+                    if(1024 >= document.documentElement.offsetWidth){
+                        obj.channel = 'H5';
+                    }else{
+                        obj.channel = 'PC';
+                    }
+                } else if(UA.indexOf('android') > -1 || UA.indexOf('linux') > -1){
+                    obj.channel = 'H5';
+                    let MList = UA.split(';');
+                    for(let i=0;i<MList.length;i++){
+                        if(MList[i].indexOf('android') > -1){
+                            obj.platformOS = 'Android'+ MList[i].slice(MList[i].indexOf('android'),MList[i].length).replace('android','').replace(/[*_?]/g,'.').replace(/[-+?]/g,' ')
+                        }
+                        if(MList[i].indexOf('build') > -1){
+                            obj.osVersion = MList[i].slice(0,MList[i].indexOf('build')).replace(/[*_?]/g,'.').replace(/[-/+?]/g,' ')
+                        }
+                    }
+                    obj.platform = 'ANDROID';
+                } else if(UA.match(/\(i[^;]+;( U;)? cpu.+mac os x/)){
+                    obj.channel = 'H5';
+                    if(UA.indexOf('iphone') > -1){
+                        obj.platformOS = 'Iphone';
+                    }else if(UA.indexOf('ipad') > -1){
+                        obj.platformOS = 'Ipad';
+                    }else if(UA.indexOf('ipod') > -1){
+                        obj.platformOS = 'Ipod';
+                    }
+                    obj.osVersion = UA.slice(UA.lastIndexOf(obj.platformOS.toLocaleLowerCase()),UA.indexOf('like')-1).replace(obj.platformOS+' os','').replace(/[*_?]/g,'.').replace(/[-/+?]/g,' ');
+                    obj.platform = 'IOS';
+                }
+                let UAList = UA.split(' ');
+                let TestList = [
+                    { test: 'micromessenger',name: 'WeXin',get: 'micromessenger',appMode: 'WX' },
+                    { test: 'tencenttraveler',name: 'TencentTraveler',get: 'tencenttraveler',appMode: 'browser' },
+                    { test: 'firefox',name: 'FireFox',get: 'firefox',appMode: 'browser' },
+                    { test: 'edge',name: 'Edge',get: 'edge',appMode: 'browser' },
+                    { test: 'bidubrowser',name: 'BaiDuBrowser',get: 'bidubrowser',appMode: 'browser' },
+                    { test: 'maxthon',name: 'Maxthon',get: 'maxthon',appMode: 'browser' },
+                    { test: 'qqbrowser',name: 'QQBrowser',get: 'qqbrowser',appMode: 'browser' },
+                    { test: 'opera',name: 'Opera',get: 'opera',appMode: 'browser' },
+                    { test: 'opr',name: 'Opera',get: 'opr',appMode: 'browser' },
+                    { test: 'presto',name: 'Opera',get: 'version',appMode: 'browser' },
+                    { test: '360se',name: '360SE',get: '360se',appMode: 'browser' },
+                    { test: '360ee',name: '360EE',get: '360ee',appMode: 'browser' },
+                    { test: 'metasr',name: 'SoGou',get: 'metasr',appMode: 'browser' },
+                    { test: 'se',name: 'SoGou',get: 'se',appMode: 'browser' },
+                    { test: 'the world',name: 'The World',get: 'the world',appMode: 'browser' },
+                    { test: 'theworld',name: 'The World',get: 'theworld',appMode: 'browser' },
+                    { test: 'uc',name: 'UC',get: 'uc',appMode: 'browser' },
+                    { test: 'ubrowser',name: 'UC',get: 'ubrowser',appMode: 'browser' },
+                    { test: 'lbbrowser',name: 'LBBrowser',get: 'lbbrowser',appMode: 'browser' },
+                    { test: 'version',name: 'Safari',get: 'version',appMode: 'browser' },
+                    { test: 'chrome',name: 'Chrome',get: 'chrome',appMode: 'browser' },
+                    { test: 'iemobile',name: 'IEMobile',get: 'iemobile',appMode: 'browser' },
+                    { test: 'trident/7.0',name: 'MSIE',get: 'rv:',appMode: 'browser' },
+                    { test: 'msie',name: 'MSIE',get: 'msie',appMode: 'browser' },
+                ];
+                if(UA.indexOf('khtml') > -1 && UA.indexOf('gecko') > -1 && UA.indexOf('safari') > -1 && UA.indexOf('applewebkit') > -1){
+                    for(let j=0;j<TestList.length;j++) {
+                        if (UA.indexOf(TestList[j].test) > -1) {
+                            obj.browser = TestList[j].name;
+                            obj.appName = TestList[j].get;
+                            obj.appMode = TestList[j].appMode;
+                            // eslint-disable-next-line no-use-before-define
+                            getBrowserVersion(TestList[j].get);
+                            break;
+                        }
+                    }
+                }else{
+                    for(let j=0;j<TestList.length;j++){
+                        if(UA.indexOf(TestList[j].test) > -1){
+                            obj.browser = TestList[j].name;
+                            obj.appName = TestList[j].get;
+                            obj.appMode = TestList[j].appMode;
+                            // eslint-disable-next-line no-use-before-define
+                            getBrowserVersion(TestList[j].get);
+                            break;
+                        }
+                    }
+                }
+                if(UA.indexOf('trident') > -1 || UA.indexOf('msie') > -1){
+                    if(UA.indexOf('msie') > -1){
+                        // eslint-disable-next-line no-use-before-define
+                        getBrowserVersion('msie')
+                    }else if(UA.indexOf('trident') > -1){
+                        // eslint-disable-next-line no-use-before-define
+                        getBrowserVersion('rv')
+                    }
+                    obj.browserVersion = 'IE'+ obj.browserVersion;
+                }
+                function getBrowserVersion(browser) {
+                    for(let k=0;k<UAList.length;k++){
+                        if(UAList[k].indexOf(browser) > -1){
+                            UAList[k] = UAList[k].replace(/[;:)*_\-\/+?]/g,'');
+                            obj.browserVersion = UAList[k].slice(UAList[k].indexOf(browser)+browser.length,UA.length);
+                            break;
+                        }
+                    }
+                }
+                return obj;
+            },
+            Obj2String: function(obj) {
+                let string = '';
+                for(let key in obj){
+                    string+= '&'+key+'='+obj[key];
+                }
+                string = encodeURIComponent(string).replace(/%/g, '_');
+                return string;
+            },
+        },
+        TG: {
+            eventHandlers: {},
+            initParams: {},
+            isIframe: false,
+            version: '6.0',
+            initData: '',
+            initDataUnsafe: {},
+            platform: 'unknown',
+            init: function(){
+                this.initParams = this.storeParams();
+                this.storeCache();
+                this.initIsIframe();
+                this.resetParams();
+            },
+            storeParams: function(){
+                let locationHash = '';
+                try {
+                    locationHash = location.hash.toString();
+                    locationHash = locationHash.replace(/^#/, '');
+                    let params = {};
+                    if (!locationHash.length) {
+                        return params;
+                    }
+                    if (locationHash.indexOf('=') < 0 && locationHash.indexOf('?') < 0) {
+                        params._path = this.urlSafeDecode(locationHash);
+                        return params;
+                    }
+                    let qIndex = locationHash.indexOf('?');
+                    if (qIndex >= 0) {
+                        let pathParam = locationHash.substring(0, qIndex);
+                        params._path = this.urlSafeDecode(pathParam);
+                        locationHash = locationHash.substring(qIndex + 1);
+                    }
+                    let queryParams = this.urlParseQueryString(locationHash);
+                    for (let k in queryParams) {
+                        params[k] = queryParams[k];
+                    }
+                    return params;
+                } catch (e) {
+                    //
+                }
+            },
+            storeCache: function(){
+                let storedParams = this.sessionStorageGet('initParams');
+                if (storedParams) {
+                    for (let key in storedParams) {
+                        if (typeof this.initParams[key] === 'undefined') {
+                            this.initParams[key] = storedParams[key];
+                        }
+                    }
+                }
+                this.sessionStorageSet('initParams', this.initParams);
+            },
+            initIsIframe: function(){
+                let isIframe = this.isIframe, iFrameStyle, dataParsed;
+                try {
+                    isIframe = (window.parent !== null && window !== window.parent);
+                    if (isIframe) {
+                        window.addEventListener('message', function (event) {
+                            if (event.source !== window.parent) {
+                                return;
+                            }
+                            try {
+                                dataParsed = JSON.parse(event.data);
+                            } catch (e) {
+                                return;
+                            }
+                            if (!dataParsed || !dataParsed.eventType) {
+                                return;
+                            }
+                            if (dataParsed.eventType === 'set_custom_style') {
+                                if (event.origin === 'https://web.telegram.org') {
+                                    iFrameStyle.innerHTML = dataParsed.eventData;
+                                }
+                            } else if (dataParsed.eventType === 'reload_iframe') {
+                                try {
+                                    window.parent.postMessage(JSON.stringify({ eventType: 'iframe_will_reload' }), '*');
+                                } catch (e) {
+                                    //
+                                }
+                                location.reload();
+                            } else {
+                                this.receiveEvent(dataParsed.eventType, dataParsed.eventData);
+                            }
+                        });
+                        iFrameStyle = document.createElement('style');
+                        document.head.appendChild(iFrameStyle);
+                        try {
+                            window.parent.postMessage(JSON.stringify({ eventType: 'iframe_ready', eventData: { 'reload_supported': true } }), '*');
+                        } catch (e) {
+                            //
+                        }
+                    }
+                    this.isIframe = isIframe;
+                } catch (e) {
+                    //
+                }
+            },
+            resetParams: function(){
+                let initParams = this.initParams;
+                if (initParams.tgWebAppData && initParams.tgWebAppData.length) {
+                    this.initData = initParams.tgWebAppData;
+                    this.initDataUnsafe = this.urlParseQueryString(this.initData);
+                    for (let key in this.initDataUnsafe) {
+                        let val = this.initDataUnsafe[key];
+                        try {
+                            if (val.substring(0, 1) === '{' && val.substring(-1) === '}' || val.substring(0, 1) === '[' && val.substring(-1) === ']') {
+                                this.initDataUnsafe[key] = JSON.parse(val);
+                            }
+                        } catch (e) {
+                            //
+                        }
+                    }
+                }
+                if (initParams.tgWebAppVersion) {
+                    this.version = initParams.tgWebAppVersion;
+                }
+                if (initParams.tgWebAppPlatform) {
+                    this.platform = initParams.tgWebAppPlatform;
+                }
+            },
+            postEvent: function(eventType, callback, eventData) {
+                if (!callback) {
+                    callback = function () {};
+                }
+                if (eventData === undefined) {
+                    eventData = '';
+                }
+                console.log('[Telegram.WebView] > postEvent', eventType, eventData);
+                if (window['TelegramWebviewProxy'] !== undefined) {
+                    window['TelegramWebviewProxy'].postEvent(eventType, JSON.stringify(eventData));
+                    callback();
+                } else if (window.external && 'notify' in window.external) {
+                    window.external.notify(JSON.stringify({ eventType: eventType, eventData: eventData }));
+                    callback();
+                } else if (this.isIframe) {
+                    try {
+                        let trustedTarget = 'https://web.telegram.org';
+                        trustedTarget = '*';
+                        window.parent.postMessage(JSON.stringify({ eventType: eventType, eventData: eventData }), trustedTarget);
+                        callback();
+                    } catch (e) {
+                        callback(e);
+                    }
+                } else {
+                    callback({ notAvailable: true });
+                }
+            },
+            receiveEvent: function(eventType, eventData) {
+                console.log('[Telegram.WebView] < receiveEvent', eventType, eventData);
+                this.callEventCallbacks(eventType, function(callback) {
+                    callback(eventType, eventData);
+                });
+            },
+            callEventCallbacks(eventType, cb) {
+                let curEventHandlers = this.eventHandlers[eventType];
+                if (curEventHandlers === undefined ||
+                    !curEventHandlers.length) {
+                    return;
+                }
+                for (let i = 0; i < curEventHandlers.length; i++) {
+                    try {
+                        cb(curEventHandlers[i]);
+                    } catch (e) {
+                        //
+                    }
+                }
+            },
+            urlParseQueryString: function(queryString) {
+                let params = {};
+                if (!queryString.length) {
+                    return params;
+                }
+                let queryStringParams = queryString.split('&');
+                let i, param, paramName, paramValue;
+                for (i = 0; i < queryStringParams.length; i++) {
+                    param = queryStringParams[i].split('=');
+                    paramName = this.urlSafeDecode(param[0]);
+                    paramValue = param[1] == null ? null : this.urlSafeDecode(param[1]);
+                    params[paramName] = paramValue;
+                }
+                return params;
+            },
+            urlSafeDecode: function(urlencoded) {
+                try {
+                    urlencoded = urlencoded.replace(/\+/g, '%20');
+                    return decodeURIComponent(urlencoded);
+                } catch (e) {
+                    return urlencoded;
+                }
+            },
+            sessionStorageSet: function(key, value) {
+                try {
+                    window.sessionStorage.setItem('__telegram__' + key, JSON.stringify(value));
+                    return true;
+                } catch(e) {
+                    //
+                }
+                return false;
+            },
+            sessionStorageGet: function(key) {
+                try {
+                    return JSON.parse(window.sessionStorage.getItem('__telegram__' + key));
+                } catch(e) {
+                    //
+                }
+                return null;
+            },
+            ready: function () {
+                this.postEvent('web_app_ready');
+            },
+            versionCompare: function(v1, v2) {
+                if (typeof v1 !== 'string') {
+                    v1 = '';
+                }
+                if (typeof v2 !== 'string') {
+                    v2 = '';
+                }
+                v1 = v1.replace(/^\s+|\s+$/g, '').split('.');
+                v2 = v2.replace(/^\s+|\s+$/g, '').split('.');
+                let a = Math.max(v1.length, v2.length), i, p1, p2;
+                for (i = 0; i < a; i++) {
+                    p1 = parseInt(v1[i]) || 0;
+                    p2 = parseInt(v2[i]) || 0;
+                    if (p1 === p2) {
+                        continue;
+                    }
+                    if (p1 > p2) {
+                        return 1;
+                    }
+                    return -1;
+                }
+                return 0;
+            },
+            versionAtLeast: function(ver) {
+                return this.versionCompare(this.version, ver) >= 0;
+            },
+            openTelegramLink: function (url, options) {
+                let a = document.createElement('A');
+                a.href = url;
+                if (a.protocol !== 'http:' && a.protocol !== 'https:') {
+                    console.error('[Telegram.WebApp] Url protocol is not supported', url);
+                    throw Error('WebAppTgUrlInvalid');
+                }
+                if (a.hostname !== 't.me') {
+                    console.error('[Telegram.WebApp] Url host is not supported', url);
+                    throw Error('WebAppTgUrlInvalid');
+                }
+                let path_full = a.pathname + a.search;
+                options = options || {};
+                if (this.isIframe || this.versionAtLeast('6.1')) {
+                    let req_params = { 'path_full': path_full };
+                    if (options.force_request) {
+                        req_params.force_request = true;
+                    }
+                    this.postEvent('web_app_open_tg_link', false, req_params);
+                } else {
+                    location.href = 'https://t.me' + path_full;
+                }
+            },
+            openLink: function (url, options) {
+                let a = document.createElement('A');
+                a.href = url;
+                if (a.protocol !== 'http:' && a.protocol !== 'https:') {
+                    console.error('[Telegram.WebApp] Url protocol is not supported', url);
+                    throw Error('WebAppTgUrlInvalid');
+                }
+                options = options || {};
+                if (this.versionAtLeast('6.1')) {
+                    let req_params = { url };
+                    if (this.versionAtLeast('6.4') && options.try_instant_view) {
+                        req_params.try_instant_view = true;
+                    }
+                    if (this.versionAtLeast('7.6') && options.try_browser) {
+                        req_params.try_browser = options.try_browser;
+                    }
+                    this.postEvent('web_app_open_link', false, req_params);
+                } else {
+                    window.open(url, '_blank');
+                }
+            },
+        },
+    };
+    return console.log("this", this), e;
+})), ! function(a, b) {
+    "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
+        if (!a.document) {
+            throw new Error("Ajax requires a window with a document")
+        }
+        return b(a)
+    } : b(a)
+}("undefined" != typeof window ? window : this, function(a, b) {
+    var c = [],
+        d = c.slice,
+        e = c.concat,
+        f = c.push,
+        g = c.indexOf,
+        h = {},
+        i = h.toString,
+        j = h.hasOwnProperty,
+        k = {},
+        l = "Split jQuery Ajax Funtion as Window.J$.ajax and remove other Functions width jQuery.1.11.1, Compatible with old browsers, Case for import full jQuery component without conflict. Author: https://github.com:MrVincentP/jq-ajax, Modification Date: 2024-04-11 16:35:00. In My App, I use it to request JSONP for thirdparty components and same origin ajax request instead axios.",
+        m = function(a, b) {
+            return new m.fn.init(a, b)
+        },
+        n = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
+        o = /^-ms-/,
+        p = /-([\da-z])/gi,
+        q = function(a, b) {
+            return b.toUpperCase()
+        };
+    m.fn = m.prototype = {
+        Async: l,
+        constructor: m,
+        selector: "",
+        length: 0
+    }, m.extend = m.fn.extend = function() {
+        var a, b, c, d, e, f, g = arguments[0] || {},
+            h = 1,
+            i = arguments.length,
+            j = !1;
+        for ("boolean" == typeof g && (j = g, g = arguments[h] || {}, h++), "object" == typeof g || m.isFunction(g) || (g = {}), h === i && (g = this, h--); i > h; h++) {
+            if (null != (e = arguments[h])) {
+                for (d in e) {
+                    a = g[d], c = e[d], g !== c && (j && c && (m.isPlainObject(c) || (b = m.isArray(c))) ? (b ? (b = !1, f = a && m.isArray(a) ? a : []) : f = a && m.isPlainObject(a) ? a : {}, g[d] = m.extend(j, f, c)) : void 0 !== c && (g[d] = c))
+                }
+            }
+        }
+        return g
+    }, m.extend({
+        expando: "Ajax" + (l + Math.random())
+            .replace(/\D/g, ""),
+        isReady: !0,
+        error: function(a) {
+            throw new Error(a)
+        },
+        isFunction: function(a) {
+            return "function" === m.type(a)
+        },
+        isArray: Array.isArray || function(a) {
+            return "array" === m.type(a)
+        },
+        isWindow: function(a) {
+            return null != a && a == a.window
+        },
+        isPlainObject: function(a) {
+            var b;
+            if (!a || "object" !== m.type(a) || a.nodeType || m.isWindow(a)) {
+                return !1
+            }
+            try {
+                if (a.constructor && !j.call(a, "constructor") && !j.call(a.constructor.prototype, "isPrototypeOf")) {
+                    return !1
+                }
+            } catch (c) {
+                return !1
+            }
+            if (k.ownLast) {
+                for (b in a) {
+                    return j.call(a, b)
+                }
+            }
+            for (b in a) {}
+            return void 0 === b || j.call(a, b)
+        },
+        type: function(a) {
+            return null == a ? a + "" : "object" == typeof a || "function" == typeof a ? h[i.call(a)] || "object" : typeof a
+        },
+        each: function(a, b, c) {
+            var d, e = 0,
+                f = a.length,
+                g = r(a);
+            if (c) {
+                if (g) {
+                    for (; f > e; e++) {
+                        if (d = b.apply(a[e], c), d === !1) {
+                            break
+                        }
+                    }
+                } else {
+                    for (e in a) {
+                        if (d = b.apply(a[e], c), d === !1) {
+                            break
+                        }
+                    }
+                }
+            } else {
+                if (g) {
+                    for (; f > e; e++) {
+                        if (d = b.call(a[e], e, a[e]), d === !1) {
+                            break
+                        }
+                    }
+                } else {
+                    for (e in a) {
+                        if (d = b.call(a[e], e, a[e]), d === !1) {
+                            break
+                        }
+                    }
+                }
+            }
+            return a
+        },
+        trim: function(a) {
+            return null == a ? "" : (a + "")
+                .replace(n, "")
+        },
+        makeArray: function(a, b) {
+            var c = b || [];
+            return null != a && (r(Object(a)) ? m.merge(c, "string" == typeof a ? [a] : a) : f.call(c, a)), c
+        },
+        merge: function(a, b) {
+            var c = +b.length,
+                d = 0,
+                e = a.length;
+            while (c > d) {
+                a[e++] = b[d++]
+            }
+            if (c !== c) {
+                while (void 0 !== b[d]) {
+                    a[e++] = b[d++]
+                }
+            }
+            return a.length = e, a
+        },
+        now: function() {
+            return +new Date
+        }
+    }), m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "), function(a, b) {
+        h["[object " + b + "]"] = b.toLowerCase()
+    });
+
+    function r(a) {
+        var b = a.length,
+            c = m.type(a);
+        return "function" === c || m.isWindow(a) ? !1 : 1 === a.nodeType && b ? !0 : "array" === c || 0 === b || "number" == typeof b && b > 0 && b - 1 in a
+    }
+    var x, y = a.document,
+        z = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,
+        A = m.fn.init = function(a, b) {
+            var c, d;
+            if (!a) {
+                return this
+            }
+            if ("string" == typeof a) {
+                if (c = "<" === a.charAt(0) && ">" === a.charAt(a.length - 1) && a.length >= 3 ? [null, a, null] : z.exec(a), !c || !c[1] && b) {
+                    return !b || b.Async ? (b || x)
+                        .find(a) : this.constructor(b)
+                        .find(a)
+                }
+                if (c[1]) {
+                    if (b = b instanceof m ? b[0] : b, m.merge(this, m.parseHTML(c[1], b && b.nodeType ? b.ownerDocument || b : y, !0)), u.test(c[1]) && m.isPlainObject(b)) {
+                        for (c in b) {
+                            m.isFunction(this[c]) ? this[c](b[c]) : this.attr(c, b[c])
+                        }
+                    }
+                    return this
+                }
+                if (d = y.getElementById(c[2]), d && d.parentNode) {
+                    if (d.id !== c[2]) {
+                        return x.find(a)
+                    }
+                    this.length = 1, this[0] = d
+                }
+                return this.context = y, this.selector = a, this
+            }
+            return a.nodeType ? (this.context = this[0] = a, this.length = 1, this) : m.isFunction(a) ? "undefined" != typeof x.ready ? x.ready(a) : a(m) : (void 0 !== a.selector && (this.selector = a.selector, this.context = a.context), m.makeArray(a, this))
+        };
+    A.prototype = m.fn, x = m(y);
+    var E = /\S+/g,
+        F = {};
+
+    function G(a) {
+        var b = F[a] = {};
+        return m.each(a.match(E) || [], function(a, c) {
+            b[c] = !0
+        }), b
+    }
+    m.Callbacks = function(a) {
+        a = "string" == typeof a ? F[a] || G(a) : m.extend({}, a);
+        var b, c, d, e, f, g, h = [],
+            i = !a.once && [],
+            j = function(l) {
+                for (c = a.memory && l, d = !0, f = g || 0, g = 0, e = h.length, b = !0; h && e > f; f++) {
+                    if (h[f].apply(l[0], l[1]) === !1 && a.stopOnFalse) {
+                        c = !1;
+                        break
+                    }
+                }
+                b = !1, h && (i ? i.length && j(i.shift()) : c ? h = [] : k.disable())
+            },
+            k = {
+                add: function() {
+                    if (h) {
+                        var d = h.length;
+                        ! function f(b) {
+                            m.each(b, function(b, c) {
+                                var d = m.type(c);
+                                "function" === d ? a.unique && k.has(c) || h.push(c) : c && c.length && "string" !== d && f(c)
+                            })
+                        }(arguments), b ? e = h.length : c && (g = d, j(c))
+                    }
+                    return this
+                },
+                remove: function() {
+                    return h && m.each(arguments, function(a, c) {
+                        var d;
+                        while ((d = m.inArray(c, h, d)) > -1) {
+                            h.splice(d, 1), b && (e >= d && e--, f >= d && f--)
+                        }
+                    }), this
+                },
+                has: function(a) {
+                    return a ? m.inArray(a, h) > -1 : !(!h || !h.length)
+                },
+                empty: function() {
+                    return h = [], e = 0, this
+                },
+                disable: function() {
+                    return h = i = c = void 0, this
+                },
+                disabled: function() {
+                    return !h
+                },
+                lock: function() {
+                    return i = void 0, c || k.disable(), this
+                },
+                locked: function() {
+                    return !i
+                },
+                fireWith: function(a, c) {
+                    return !h || d && !i || (c = c || [], c = [a, c.slice ? c.slice() : c], b ? i.push(c) : j(c)), this
+                },
+                fire: function() {
+                    return k.fireWith(this, arguments), this
+                },
+                fired: function() {
+                    return !!d
+                }
+            };
+        return k
+    }, m.extend({
+        Deferred: function(a) {
+            var b = [
+                    ["resolve", "done", m.Callbacks("once memory"), "resolved"],
+                    ["reject", "fail", m.Callbacks("once memory"), "rejected"],
+                    ["notify", "progress", m.Callbacks("memory")]
+                ],
+                c = "pending",
+                d = {
+                    state: function() {
+                        return c
+                    },
+                    always: function() {
+                        return e.done(arguments)
+                            .fail(arguments), this
+                    },
+                    then: function() {
+                        var a = arguments;
+                        return m.Deferred(function(c) {
+                            m.each(b, function(b, f) {
+                                var g = m.isFunction(a[b]) && a[b];
+                                e[f[1]](function() {
+                                    var a = g && g.apply(this, arguments);
+                                    a && m.isFunction(a.promise) ? a.promise()
+                                        .done(c.resolve)
+                                        .fail(c.reject)
+                                        .progress(c.notify) : c[f[0] + "With"](this === d ? c.promise() : this, g ? [a] : arguments)
+                                })
+                            }), a = null
+                        })
+                            .promise()
+                    },
+                    promise: function(a) {
+                        return null != a ? m.extend(a, d) : d
+                    }
+                },
+                e = {};
+            return d.pipe = d.then, m.each(b, function(a, f) {
+                var g = f[2],
+                    h = f[3];
+                d[f[1]] = g.add, h && g.add(function() {
+                    c = h
+                }, b[1 ^ a][2].disable, b[2][2].lock), e[f[0]] = function() {
+                    return e[f[0] + "With"](this === e ? d : this, arguments), this
+                }, e[f[0] + "With"] = g.fireWith
+            }), d.promise(e), a && a.call(e, e), e
+        }
+    });
+    var K = "undefined",
+        L;
+    for (L in m(k)) {
+        break
+    }
+    m.acceptData = function(a) {
+        var b = m.noData[(a.nodeName + " ")
+                .toLowerCase()],
+            c = +a.nodeType || 1;
+        return 1 !== c && 9 !== c ? !1 : !b || b !== !0 && a.getAttribute("classid") === b
+    };
+
+    function Q(a, b, d, e) {
+        if (m.acceptData(a)) {
+            var f, g, h = m.expando,
+                i = a.nodeType,
+                j = i ? m.cache : a,
+                k = i ? a[h] : a[h] && h;
+            if (k && j[k] && (e || j[k].data) || void 0 !== d || "string" != typeof b) {
+                return k || (k = i ? a[h] = c.pop() || m.guid++ : h), j[k] || (j[k] = i ? {} : {
+                    toJSON: m.noop
+                }), ("object" == typeof b || "function" == typeof b) && (e ? j[k] = m.extend(j[k], b) : j[k].data = m.extend(j[k].data, b)), g = j[k], e || (g.data || (g.data = {}), g = g.data), void 0 !== d && (g[m.camelCase(b)] = d), "string" == typeof b ? (f = g[b], null == f && (f = g[m.camelCase(b)])) : f = g, f
+            }
+        }
+    }
+    m.extend({
+        noData: {
+            "applet ": !0,
+            "embed ": !0,
+            "object ": "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+        },
+        _data: function(a, b, c) {
+            return Q(a, b, c, !0)
+        }
+    });
+    var Y = /^(?:focusinfocus|focusoutblur)$/;
+
+    function J$() {
+        return !0
+    }
+
+    function _() {
+        return !1
+    }
+    m.event = {
+        trigger: function(b, c, d, e) {
+            var f, g, h, i, k, l, n, o = [d || y],
+                p = j.call(b, "type") ? b.type : b,
+                q = j.call(b, "namespace") ? b.namespace.split(".") : [];
+            if (h = l = d = d || y, 3 !== d.nodeType && 8 !== d.nodeType && !Y.test(p + m.event.triggered) && (p.indexOf(".") >= 0 && (q = p.split("."), p = q.shift(), q.sort()), g = p.indexOf(":") < 0 && "on" + p, b = b[m.expando] ? b : new m.Event(p, "object" == typeof b && b), b.isTrigger = e ? 2 : 3, b.namespace = q.join("."), b.namespace_re = b.namespace ? new RegExp("(^|\\.)" + q.join("\\.(?:.*\\.|)") + "(\\.|$)") : null, b.result = void 0, b.target || (b.target = d), c = null == c ? [b] : m.makeArray(c, [b]), k = m.event.special[p] || {}, e || !k.trigger || k.trigger.apply(d, c) !== !1)) {
+                if (!e && !k.noBubble && !m.isWindow(d)) {
+                    for (i = k.delegateType || p, Y.test(i + p) || (h = h.parentNode); h; h = h.parentNode) {
+                        o.push(h), l = h
+                    }
+                    l === (d.ownerDocument || y) && o.push(l.defaultView || l.parentWindow || a)
+                }
+                n = 0;
+                while ((h = o[n++]) && !b.isPropagationStopped()) {
+                    b.type = n > 1 ? i : k.bindType || p, f = (m._data(h, "events") || {})[b.type] && m._data(h, "handle"), f && f.apply(h, c), f = g && h[g], f && f.apply && m.acceptData(h) && (b.result = f.apply(h, c), b.result === !1 && b.preventDefault())
+                }
+                if (b.type = p, !e && !b.isDefaultPrevented() && (!k._default || k._default.apply(o.pop(), c) === !1) && m.acceptData(d) && g && d[p] && !m.isWindow(d)) {
+                    l = d[g], l && (d[g] = null), m.event.triggered = p;
+                    try {
+                        d[p]()
+                    } catch (r) {}
+                    m.event.triggered = void 0, l && (d[g] = l)
+                }
+                return b.result
+            }
+        },
+        special: {
+            load: {
+                noBubble: !0
+            }
+        }
+    }, m.removeEvent = y.removeEventListener ? function(a, b, c) {
+        a.removeEventListener && a.removeEventListener(b, c, !1)
+    } : function(a, b, c) {
+        var d = "on" + b;
+        a.detachEvent && (typeof a[d] === K && (a[d] = null), a.detachEvent(d, c))
+    }, m.Event = function(a, b) {
+        return this instanceof m.Event ? (a && a.type ? (this.originalEvent = a, this.type = a.type, this.isDefaultPrevented = a.defaultPrevented || void 0 === a.defaultPrevented && a.returnValue === !1 ? J$ : _) : this.type = a, b && m.extend(this, b), this.timeStamp = a && a.timeStamp || m.now(), void(this[m.expando] = !0)) : new m.Event(a, b)
+    }, m.Event.prototype = {
+        isDefaultPrevented: _,
+        isPropagationStopped: _
+    };
+    m.fn.extend({
+        bind: function(a, b, c) {
+            return this.on(a, null, b, c)
+        },
+        unbind: function(a, b) {
+            return this.off(a, null, b)
+        }
+    });
+    var Kb = m.now(),
+        Lb = /\?/,
+        Mb = /(,)|(\[|{)|(}|])|"(?:[^"\\\r\n]|\\["\\\/bfnrt]|\\u[\da-fA-F]{4})*"\s*:?|true|false|null|-?(?!0\d)\d+(?:\.\d+|)(?:[eE][+-]?\d+|)/g;
+    m.parseJSON = function(b) {
+        if (a.JSON && a.JSON.parse) {
+            return a.JSON.parse(b + "")
+        }
+        var c, d = null,
+            e = m.trim(b + "");
+        return e && !m.trim(e.replace(Mb, function(a, b, e, f) {
+            return c && b && (d = 0), 0 === d ? a : (c = e || b, d += !f - !e, "")
+        })) ? Function("return " + e)() : m.error("Invalid JSON: " + b)
+    }, m.parseXML = function(b) {
+        var c, d;
+        if (!b || "string" != typeof b) {
+            return null
+        }
+        try {
+            a.DOMParser ? (d = new DOMParser, c = d.parseFromString(b, "text/xml")) : (c = new ActiveXObject("Microsoft.XMLDOM"), c.async = "false", c.loadXML(b))
+        } catch (e) {
+            c = void 0
+        }
+        return c && c.documentElement && !c.getElementsByTagName("parsererror")
+            .length || m.error("Invalid XML: " + b), c
+    };
+    var Nb, Ob, Pb = /#.*$/,
+        Qb = /([?&])_=[^&]*/,
+        Rb = /^(.*?):[ \t]*([^\r\n]*)\r?$/gm,
+        Sb = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
+        Tb = /^(?:GET|HEAD)$/,
+        Ub = /^\/\//,
+        Vb = /^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/,
+        Wb = {},
+        Xb = {},
+        Yb = "*/".concat("*");
+    try {
+        Ob = location.href
+    } catch (Zb) {
+        Ob = y.createElement("a"), Ob.href = "", Ob = Ob.href
+    }
+    Nb = Vb.exec(Ob.toLowerCase()) || [];
+
+    function $b(a) {
+        return function(b, c) {
+            "string" != typeof b && (c = b, b = "*");
+            var d, e = 0,
+                f = b.toLowerCase()
+                    .match(E) || [];
+            if (m.isFunction(c)) {
+                while (d = f[e++]) {
+                    "+" === d.charAt(0) ? (d = d.slice(1) || "*", (a[d] = a[d] || [])
+                        .unshift(c)) : (a[d] = a[d] || [])
+                        .push(c)
+                }
+            }
+        }
+    }
+
+    function _b(a, b, c, d) {
+        var e = {},
+            f = a === Xb;
+
+        function g(h) {
+            var i;
+            return e[h] = !0, m.each(a[h] || [], function(a, h) {
+                var j = h(b, c, d);
+                return "string" != typeof j || f || e[j] ? f ? !(i = j) : void 0 : (b.dataTypes.unshift(j), g(j), !1)
+            }), i
+        }
+        return g(b.dataTypes[0]) || !e["*"] && g("*")
+    }
+
+    function ac(a, b) {
+        var c, d, e = m.ajaxSettings.flatOptions || {};
+        for (d in b) {
+            void 0 !== b[d] && ((e[d] ? a : c || (c = {}))[d] = b[d])
+        }
+        return c && m.extend(!0, a, c), a
+    }
+
+    function bc(a, b, c) {
+        var d, e, f, g, h = a.contents,
+            i = a.dataTypes;
+        while ("*" === i[0]) {
+            i.shift(), void 0 === e && (e = a.mimeType || b.getResponseHeader("Content-Type"))
+        }
+        if (e) {
+            for (g in h) {
+                if (h[g] && h[g].test(e)) {
+                    i.unshift(g);
+                    break
+                }
+            }
+        }
+        if (i[0] in c) {
+            f = i[0]
+        } else {
+            for (g in c) {
+                if (!i[0] || a.converters[g + " " + i[0]]) {
+                    f = g;
+                    break
+                }
+                d || (d = g)
+            }
+            f = f || d
+        }
+        return f ? (f !== i[0] && i.unshift(f), c[f]) : void 0
+    }
+
+    function cc(a, b, c, d) {
+        var e, f, g, h, i, j = {},
+            k = a.dataTypes.slice();
+        if (k[1]) {
+            for (g in a.converters) {
+                j[g.toLowerCase()] = a.converters[g]
+            }
+        }
+        f = k.shift();
+        while (f) {
+            if (a.responseFields[f] && (c[a.responseFields[f]] = b), !i && d && a.dataFilter && (b = a.dataFilter(b, a.dataType)), i = f, f = k.shift()) {
+                if ("*" === f) {
+                    f = i
+                } else {
+                    if ("*" !== i && i !== f) {
+                        if (g = j[i + " " + f] || j["* " + f], !g) {
+                            for (e in j) {
+                                if (h = e.split(" "), h[1] === f && (g = j[i + " " + h[0]] || j["* " + h[0]])) {
+                                    g === !0 ? g = j[e] : j[e] !== !0 && (f = h[0], k.unshift(h[1]));
+                                    break
+                                }
+                            }
+                        }
+                        if (g !== !0) {
+                            if (g && a["throws"]) {
+                                b = g(b)
+                            } else {
+                                try {
+                                    b = g(b)
+                                } catch (l) {
+                                    return {
+                                        state: "parsererror",
+                                        error: g ? l : "No conversion from " + i + " to " + f
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return {
+            state: "success",
+            data: b
+        }
+    }
+    m.extend({
+        active: 0,
+        lastModified: {},
+        etag: {},
+        ajaxSettings: {
+            url: Ob,
+            type: "GET",
+            isLocal: Sb.test(Nb[1]),
+            global: !0,
+            processData: !0,
+            async: !0,
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            accepts: {
+                "*": Yb,
+                text: "text/plain",
+                html: "text/html",
+                xml: "application/xml, text/xml",
+                json: "application/json, text/javascript"
+            },
+            contents: {
+                xml: /xml/,
+                html: /html/,
+                json: /json/
+            },
+            responseFields: {
+                xml: "responseXML",
+                text: "responseText",
+                json: "responseJSON"
+            },
+            converters: {
+                "* text": String,
+                "text html": !0,
+                "text json": m.parseJSON,
+                "text xml": m.parseXML
+            },
+            flatOptions: {
+                url: !0,
+                context: !0
+            }
+        },
+        ajaxSetup: function(a, b) {
+            return b ? ac(ac(a, m.ajaxSettings), b) : ac(m.ajaxSettings, a)
+        },
+        ajaxPrefilter: $b(Wb),
+        ajaxTransport: $b(Xb),
+        ajax: function(a, b) {
+            "object" == typeof a && (b = a, a = void 0), b = b || {};
+            var c, d, e, f, g, h, i, j, k = m.ajaxSetup({}, b),
+                l = k.context || k,
+                n = k.context && (l.nodeType || l.Async) ? m(l) : m.event,
+                o = m.Deferred(),
+                p = m.Callbacks("once memory"),
+                q = k.statusCode || {},
+                r = {},
+                s = {},
+                t = 0,
+                u = "canceled",
+                v = {
+                    readyState: 0,
+                    getResponseHeader: function(a) {
+                        var b;
+                        if (2 === t) {
+                            if (!j) {
+                                j = {};
+                                while (b = Rb.exec(f)) {
+                                    j[b[1].toLowerCase()] = b[2]
+                                }
+                            }
+                            b = j[a.toLowerCase()]
+                        }
+                        return null == b ? null : b
+                    },
+                    getAllResponseHeaders: function() {
+                        return 2 === t ? f : null
+                    },
+                    setRequestHeader: function(a, b) {
+                        var c = a.toLowerCase();
+                        return t || (a = s[c] = s[c] || a, r[a] = b), this
+                    },
+                    overrideMimeType: function(a) {
+                        return t || (k.mimeType = a), this
+                    },
+                    statusCode: function(a) {
+                        var b;
+                        if (a) {
+                            if (2 > t) {
+                                for (b in a) {
+                                    q[b] = [q[b], a[b]]
+                                }
+                            } else {
+                                v.always(a[v.status])
+                            }
+                        }
+                        return this
+                    },
+                    abort: function(a) {
+                        var b = a || u;
+                        return i && i.abort(b), x(0, b), this
+                    }
+                };
+            if (o.promise(v)
+                .complete = p.add, v.success = v.done, v.error = v.fail, k.url = ((a || k.url || Ob) + "")
+                .replace(Pb, "")
+                .replace(Ub, Nb[1] + "//"), k.type = b.method || b.type || k.method || k.type, k.dataTypes = m.trim(k.dataType || "*")
+                .toLowerCase()
+                .match(E) || [""], null == k.crossDomain && (c = Vb.exec(k.url.toLowerCase()), k.crossDomain = !(!c || c[1] === Nb[1] && c[2] === Nb[2] && (c[3] || ("http:" === c[1] ? "80" : "443")) === (Nb[3] || ("http:" === Nb[1] ? "80" : "443")))), k.data && k.processData && "string" != typeof k.data && (k.data = m.param(k.data, k.traditional)), _b(Wb, k, b, v), 2 === t) {
+                return v
+            }
+            h = k.global, h && 0 === m.active++ && m.event.trigger("ajaxStart"), k.type = k.type.toUpperCase(), k.hasContent = !Tb.test(k.type), e = k.url, k.hasContent || (k.data && (e = k.url += (Lb.test(e) ? "&" : "?") + k.data, delete k.data), k.cache === !1 && (k.url = Qb.test(e) ? e.replace(Qb, "$1_=" + Kb++) : e + (Lb.test(e) ? "&" : "?") + "_=" + Kb++)), k.ifModified && (m.lastModified[e] && v.setRequestHeader("If-Modified-Since", m.lastModified[e]), m.etag[e] && v.setRequestHeader("If-None-Match", m.etag[e])), (k.data && k.hasContent && k.contentType !== !1 || b.contentType) && v.setRequestHeader("Content-Type", k.contentType), v.setRequestHeader("Accept", k.dataTypes[0] && k.accepts[k.dataTypes[0]] ? k.accepts[k.dataTypes[0]] + ("*" !== k.dataTypes[0] ? ", " + Yb + "; q=0.01" : "") : k.accepts["*"]);
+            for (d in k.headers) {
+                v.setRequestHeader(d, k.headers[d])
+            }
+            if (k.beforeSend && (k.beforeSend.call(l, v, k) === !1 || 2 === t)) {
+                return v.abort()
+            }
+            u = "abort";
+            for (d in {
+                success: 1,
+                error: 1,
+                complete: 1
+            }) {
+                v[d](k[d])
+            }
+            if (i = _b(Xb, k, b, v)) {
+                v.readyState = 1, h && n.trigger("ajaxSend", [v, k]), k.async && k.timeout > 0 && (g = setTimeout(function() {
+                    v.abort("timeout")
+                }, k.timeout));
+                try {
+                    t = 1, i.send(r, x)
+                } catch (w) {
+                    if (!(2 > t)) {
+                        throw w
+                    }
+                    x(-1, w)
+                }
+            } else {
+                x(-1, "No Transport")
+            }
+
+            function x(a, b, c, d) {
+                var j, r, s, u, w, x = b;
+                2 !== t && (t = 2, g && clearTimeout(g), i = void 0, f = d || "", v.readyState = a > 0 ? 4 : 0, j = a >= 200 && 300 > a || 304 === a, c && (u = bc(k, v, c)), u = cc(k, u, v, j), j ? (k.ifModified && (w = v.getResponseHeader("Last-Modified"), w && (m.lastModified[e] = w), w = v.getResponseHeader("etag"), w && (m.etag[e] = w)), 204 === a || "HEAD" === k.type ? x = "nocontent" : 304 === a ? x = "notmodified" : (x = u.state, r = u.data, s = u.error, j = !s)) : (s = x, (a || !x) && (x = "error", 0 > a && (a = 0))), v.status = a, v.statusText = (b || x) + "", j ? o.resolveWith(l, [r, x, v]) : o.rejectWith(l, [v, x, s]), v.statusCode(q), q = void 0, h && n.trigger(j ? "ajaxSuccess" : "ajaxError", [v, k, j ? r : s]), p.fireWith(l, [v, x]), h && (n.trigger("ajaxComplete", [v, k]), --m.active || m.event.trigger("ajaxStop")))
+            }
+            return v
+        },
+        getJSON: function(a, b, c) {
+            return m.get(a, b, c, "json")
+        },
+        getScript: function(a, b) {
+            return m.get(a, void 0, b, "script")
+        }
+    }), m.each(["get", "post"], function(a, b) {
+        m[b] = function(a, c, d, e) {
+            return m.isFunction(c) && (e = e || d, d = c, c = void 0), m.ajax({
+                url: a,
+                type: b,
+                dataType: e,
+                data: c,
+                success: d
+            })
+        }
+    }), m.each(["ajaxStart", "ajaxStop", "ajaxComplete", "ajaxError", "ajaxSuccess", "ajaxSend"], function(a, b) {
+        m.fn[b] = function(a) {
+            return this.on(b, a)
+        }
+    }), m._evalUrl = function(a) {
+        return m.ajax({
+            url: a,
+            type: "GET",
+            dataType: "script",
+            async: !1,
+            global: !1,
+            "throws": !0
+        })
+    };
+    var dc = /%20/g,
+        ec = /\[\]$/,
+        fc = /\r?\n/g,
+        gc = /^(?:submit|button|image|reset|file)$/i,
+        hc = /^(?:input|select|textarea|keygen)/i;
+
+    function ic(a, b, c, d) {
+        var e;
+        if (m.isArray(b)) {
+            m.each(b, function(b, e) {
+                c || ec.test(a) ? d(a, e) : ic(a + "[" + ("object" == typeof e ? b : "") + "]", e, c, d)
+            })
+        } else {
+            if (c || "object" !== m.type(b)) {
+                d(a, b)
+            } else {
+                for (e in b) {
+                    ic(a + "[" + e + "]", b[e], c, d)
+                }
+            }
+        }
+    }
+    m.param = function(a, b) {
+        var c, d = [],
+            e = function(a, b) {
+                b = m.isFunction(b) ? b() : null == b ? "" : b, d[d.length] = encodeURIComponent(a) + "=" + encodeURIComponent(b)
+            };
+        if (void 0 === b && (b = m.ajaxSettings && m.ajaxSettings.traditional), m.isArray(a) || a.Async && !m.isPlainObject(a)) {
+            m.each(a, function() {
+                e(this.name, this.value)
+            })
+        } else {
+            for (c in a) {
+                ic(c, a[c], b, e)
+            }
+        }
+        return d.join("&")
+            .replace(dc, "+")
+    }, m.fn.extend({
+        serialize: function() {
+            return m.param(this.serializeArray())
+        },
+        serializeArray: function() {
+            return this.map(function() {
+                var a = m.prop(this, "elements");
+                return a ? m.makeArray(a) : this
+            })
+                .filter(function() {
+                    var a = this.type;
+                    return this.name && !m(this)
+                        .is(":disabled") && hc.test(this.nodeName) && !gc.test(a) && (this.checked || !U.test(a))
+                })
+                .map(function(a, b) {
+                    var c = m(this)
+                        .val();
+                    return null == c ? null : m.isArray(c) ? m.map(c, function(a) {
+                        return {
+                            name: b.name,
+                            value: a.replace(fc, "\r\n")
+                        }
+                    }) : {
+                        name: b.name,
+                        value: c.replace(fc, "\r\n")
+                    }
+                })
+                .get()
+        }
+    }), m.ajaxSettings.xhr = void 0 !== a.ActiveXObject ? function() {
+        return !this.isLocal && /^(get|post|head|put|delete|options)$/i.test(this.type) && mc() || nc()
+    } : mc;
+    var jc = 0,
+        kc = {},
+        lc = m.ajaxSettings.xhr();
+    a.ActiveXObject && m(a)
+        .on("unload", function() {
+            for (var a in kc) {
+                kc[a](void 0, !0)
+            }
+        }), k.cors = !!lc && "withCredentials" in lc, lc = k.ajax = !!lc, lc && m.ajaxTransport(function(a) {
+        if (!a.crossDomain || k.cors) {
+            var b;
+            return {
+                send: function(c, d) {
+                    var e, f = a.xhr(),
+                        g = ++jc;
+                    if (f.open(a.type, a.url, a.async, a.username, a.password), a.xhrFields) {
+                        for (e in a.xhrFields) {
+                            f[e] = a.xhrFields[e]
+                        }
+                    }
+                    a.mimeType && f.overrideMimeType && f.overrideMimeType(a.mimeType), a.crossDomain || c["X-Requested-With"] || (c["X-Requested-With"] = "XMLHttpRequest");
+                    for (e in c) {
+                        void 0 !== c[e] && f.setRequestHeader(e, c[e] + "")
+                    }
+                    f.send(a.hasContent && a.data || null), b = function(c, e) {
+                        var h, i, j;
+                        if (b && (e || 4 === f.readyState)) {
+                            if (delete kc[g], b = void 0, f.onreadystatechange = m.noop, e) {
+                                4 !== f.readyState && f.abort()
+                            } else {
+                                j = {}, h = f.status, "string" == typeof f.responseText && (j.text = f.responseText);
+                                try {
+                                    i = f.statusText
+                                } catch (k) {
+                                    i = ""
+                                }
+                                h || !a.isLocal || a.crossDomain ? 1223 === h && (h = 204) : h = j.text ? 200 : 404
+                            }
+                        }
+                        j && d(h, i, j, f.getAllResponseHeaders())
+                    }, a.async ? 4 === f.readyState ? setTimeout(b) : f.onreadystatechange = kc[g] = b : b()
+                },
+                abort: function() {
+                    b && b(void 0, !0)
+                }
+            }
+        }
+    });
+
+    function mc() {
+        try {
+            return new a.XMLHttpRequest
+        } catch (b) {}
+    }
+
+    function nc() {
+        try {
+            return new a.ActiveXObject("Microsoft.XMLHTTP")
+        } catch (b) {}
+    }
+    m.ajaxSetup({
+        accepts: {
+            script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
+        },
+        contents: {
+            script: /(?:java|ecma)script/
+        },
+        converters: {
+            "text script": function(a) {
+                return m.globalEval(a), a
+            }
+        }
+    }), m.ajaxPrefilter("script", function(a) {
+        void 0 === a.cache && (a.cache = !1), a.crossDomain && (a.type = "GET", a.global = !1)
+    }), m.ajaxTransport("script", function(a) {
+        if (a.crossDomain) {
+            var b, c = y.head || m("head")[0] || y.documentElement;
+            return {
+                send: function(d, e) {
+                    b = y.createElement("script"), b.async = !0, a.scriptCharset && (b.charset = a.scriptCharset), b.src = a.url, b.onload = b.onreadystatechange = function(a, c) {
+                        (c || !b.readyState || /loaded|complete/.test(b.readyState)) && (b.onload = b.onreadystatechange = null, b.parentNode && b.parentNode.removeChild(b), b = null, c || e(200, "success"))
+                    }, c.insertBefore(b, c.firstChild)
+                },
+                abort: function() {
+                    b && b.onload(void 0, !0)
+                }
+            }
+        }
+    });
+    var oc = [],
+        pc = /(=)\?(?=&|$)|\?\?/;
+    m.ajaxSetup({
+        jsonp: "callback",
+        jsonpCallback: function() {
+            var a = oc.pop() || m.expando + "_" + Kb++;
+            return this[a] = !0, a
+        }
+    }), m.ajaxPrefilter("json jsonp", function(b, c, d) {
+        var e, f, g, h = b.jsonp !== !1 && (pc.test(b.url) ? "url" : "string" == typeof b.data && !(b.contentType || "")
+            .indexOf("application/x-www-form-urlencoded") && pc.test(b.data) && "data");
+        return h || "jsonp" === b.dataTypes[0] ? (e = b.jsonpCallback = m.isFunction(b.jsonpCallback) ? b.jsonpCallback() : b.jsonpCallback, h ? b[h] = b[h].replace(pc, "$1" + e) : b.jsonp !== !1 && (b.url += (Lb.test(b.url) ? "&" : "?") + b.jsonp + "=" + e), b.converters["script json"] = function() {
+            return g || m.error(e + " was not called"), g[0]
+        }, b.dataTypes[0] = "json", f = a[e], a[e] = function() {
+            g = arguments
+        }, d.always(function() {
+            a[e] = f, b[e] && (b.jsonpCallback = c.jsonpCallback, oc.push(e)), g && m.isFunction(f) && f(g[0]), g = f = void 0
+        }), "script") : void 0
+    }), m.parseHTML = function(a, b, c) {
+        if (!a || "string" != typeof a) {
+            return null
+        }
+        "boolean" == typeof b && (c = b, b = !1), b = b || y;
+        var d = u.exec(a),
+            e = !c && [];
+        return d ? [b.createElement(d[1])] : (d = m.buildFragment([a], b, e), e && e.length && m(e)
+            .remove(), m.merge([], d.childNodes))
+    };
+    var qc = m.fn.load;
+    m.fn.load = function(a, b, c) {
+        if ("string" != typeof a && qc) {
+            return qc.apply(this, arguments)
+        }
+        var d, e, f, g = this,
+            h = a.indexOf(" ");
+        return h >= 0 && (d = m.trim(a.slice(h, a.length)), a = a.slice(0, h)), m.isFunction(b) ? (c = b, b = void 0) : b && "object" == typeof b && (f = "POST"), g.length > 0 && m.ajax({
+            url: a,
+            type: f,
+            dataType: "html",
+            data: b
+        })
+            .done(function(a) {
+                e = arguments, g.html(d ? m("<div>")
+                    .append(m.parseHTML(a))
+                    .find(d) : a)
+            })
+            .complete(c && function(a, b) {
+                g.each(c, e || [a.responseText, b, a])
+            }), this
+    }, "function" == typeof define && define.amd && define("Async", [], function() {
+        return m
+    });
+    var sc = a.J$;
+    return m.noConflict = function(b) {
+        return a.J$ === m && (a.J$ = sc), b, m
+    }, typeof b === K && (a.J$ = m), m
+});
+! function(n) {
+    "use strict";
+
+    function t(n, t) {
+        var r = (65535 & n) + (65535 & t);
+        return (n >> 16) + (t >> 16) + (r >> 16) << 16 | 65535 & r
+    }
+
+    function r(n, t) {
+        return n << t | n >>> 32 - t
+    }
+
+    function e(n, e, o, u, c, f) {
+        return t(r(t(t(e, n), t(u, f)), c), o)
+    }
+
+    function o(n, t, r, o, u, c, f) {
+        return e(t & r | ~t & o, n, t, u, c, f)
+    }
+
+    function u(n, t, r, o, u, c, f) {
+        return e(t & o | r & ~o, n, t, u, c, f)
+    }
+
+    function c(n, t, r, o, u, c, f) {
+        return e(t ^ r ^ o, n, t, u, c, f)
+    }
+
+    function f(n, t, r, o, u, c, f) {
+        return e(r ^ (t | ~o), n, t, u, c, f)
+    }
+
+    function i(n, r) {
+        n[r >> 5] |= 128 << r % 32, n[14 + (r + 64 >>> 9 << 4)] = r;
+        var e, i, a, d, h, l = 1732584193,
+            g = -271733879,
+            v = -1732584194,
+            m = 271733878;
+        for (e = 0; e < n.length; e += 16) i = l, a = g, d = v, h = m, g = f(g = f(g = f(g = f(g = c(g = c(g = c(g = c(g = u(g = u(g = u(g = u(g = o(g = o(g = o(g = o(g, v = o(v, m = o(m, l = o(l, g, v, m, n[e], 7, -680876936), g, v, n[e + 1], 12, -389564586), l, g, n[e + 2], 17, 606105819), m, l, n[e + 3], 22, -1044525330), v = o(v, m = o(m, l = o(l, g, v, m, n[e + 4], 7, -176418897), g, v, n[e + 5], 12, 1200080426), l, g, n[e + 6], 17, -1473231341), m, l, n[e + 7], 22, -45705983), v = o(v, m = o(m, l = o(l, g, v, m, n[e + 8], 7, 1770035416), g, v, n[e + 9], 12, -1958414417), l, g, n[e + 10], 17, -42063), m, l, n[e + 11], 22, -1990404162), v = o(v, m = o(m, l = o(l, g, v, m, n[e + 12], 7, 1804603682), g, v, n[e + 13], 12, -40341101), l, g, n[e + 14], 17, -1502002290), m, l, n[e + 15], 22, 1236535329), v = u(v, m = u(m, l = u(l, g, v, m, n[e + 1], 5, -165796510), g, v, n[e + 6], 9, -1069501632), l, g, n[e + 11], 14, 643717713), m, l, n[e], 20, -373897302), v = u(v, m = u(m, l = u(l, g, v, m, n[e + 5], 5, -701558691), g, v, n[e + 10], 9, 38016083), l, g, n[e + 15], 14, -660478335), m, l, n[e + 4], 20, -405537848), v = u(v, m = u(m, l = u(l, g, v, m, n[e + 9], 5, 568446438), g, v, n[e + 14], 9, -1019803690), l, g, n[e + 3], 14, -187363961), m, l, n[e + 8], 20, 1163531501), v = u(v, m = u(m, l = u(l, g, v, m, n[e + 13], 5, -1444681467), g, v, n[e + 2], 9, -51403784), l, g, n[e + 7], 14, 1735328473), m, l, n[e + 12], 20, -1926607734), v = c(v, m = c(m, l = c(l, g, v, m, n[e + 5], 4, -378558), g, v, n[e + 8], 11, -2022574463), l, g, n[e + 11], 16, 1839030562), m, l, n[e + 14], 23, -35309556), v = c(v, m = c(m, l = c(l, g, v, m, n[e + 1], 4, -1530992060), g, v, n[e + 4], 11, 1272893353), l, g, n[e + 7], 16, -155497632), m, l, n[e + 10], 23, -1094730640), v = c(v, m = c(m, l = c(l, g, v, m, n[e + 13], 4, 681279174), g, v, n[e], 11, -358537222), l, g, n[e + 3], 16, -722521979), m, l, n[e + 6], 23, 76029189), v = c(v, m = c(m, l = c(l, g, v, m, n[e + 9], 4, -640364487), g, v, n[e + 12], 11, -421815835), l, g, n[e + 15], 16, 530742520), m, l, n[e + 2], 23, -995338651), v = f(v, m = f(m, l = f(l, g, v, m, n[e], 6, -198630844), g, v, n[e + 7], 10, 1126891415), l, g, n[e + 14], 15, -1416354905), m, l, n[e + 5], 21, -57434055), v = f(v, m = f(m, l = f(l, g, v, m, n[e + 12], 6, 1700485571), g, v, n[e + 3], 10, -1894986606), l, g, n[e + 10], 15, -1051523), m, l, n[e + 1], 21, -2054922799), v = f(v, m = f(m, l = f(l, g, v, m, n[e + 8], 6, 1873313359), g, v, n[e + 15], 10, -30611744), l, g, n[e + 6], 15, -1560198380), m, l, n[e + 13], 21, 1309151649), v = f(v, m = f(m, l = f(l, g, v, m, n[e + 4], 6, -145523070), g, v, n[e + 11], 10, -1120210379), l, g, n[e + 2], 15, 718787259), m, l, n[e + 9], 21, -343485551), l = t(l, i), g = t(g, a), v = t(v, d), m = t(m, h);
+        return [l, g, v, m]
+    }
+
+    function a(n) {
+        var t, r = "",
+            e = 32 * n.length;
+        for (t = 0; t < e; t += 8) r += String.fromCharCode(n[t >> 5] >>> t % 32 & 255);
+        return r
+    }
+
+    function d(n) {
+        var t, r = [];
+        for (r[(n.length >> 2) - 1] = void 0, t = 0; t < r.length; t += 1) r[t] = 0;
+        var e = 8 * n.length;
+        for (t = 0; t < e; t += 8) r[t >> 5] |= (255 & n.charCodeAt(t / 8)) << t % 32;
+        return r
+    }
+
+    function h(n) {
+        return a(i(d(n), 8 * n.length))
+    }
+
+    function l(n, t) {
+        var r, e, o = d(n),
+            u = [],
+            c = [];
+        for (u[15] = c[15] = void 0, o.length > 16 && (o = i(o, 8 * n.length)), r = 0; r < 16; r += 1) u[r] = 909522486 ^ o[r], c[r] = 1549556828 ^ o[r];
+        return e = i(u.concat(d(t)), 512 + 8 * t.length), a(i(c.concat(e), 640))
+    }
+
+    function g(n) {
+        var t, r, e = "";
+        for (r = 0; r < n.length; r += 1) t = n.charCodeAt(r), e += "0123456789abcdef".charAt(t >>> 4 & 15) + "0123456789abcdef".charAt(15 & t);
+        return e
+    }
+
+    function v(n) {
+        return unescape(encodeURIComponent(n))
+    }
+
+    function m(n) {
+        return h(v(n))
+    }
+
+    function p(n) {
+        return g(m(n))
+    }
+
+    function s(n, t) {
+        return l(v(n), v(t))
+    }
+
+    function C(n, t) {
+        return g(s(n, t))
+    }
+
+    function A(n, t, r) {
+        return t ? r ? s(t, n) : C(t, n) : r ? m(n) : p(n)
+    }
+    "function" == typeof define && define.amd ? define(function() {
+        return A
+    }) : "object" == typeof module && module.exports ? module.exports = A : n.shortHash = A
+}(this);
